@@ -238,24 +238,22 @@
         .hero-name h1 {
             font-family: 'Syne', sans-serif;
             font-weight: 800;
-            font-size: clamp(2.5rem, 14vw, 20vw);
-            line-height: 0.82;
+            /* Tamaño ajustado para que NUNCA se corte: */
+            font-size: clamp(3rem, 11vw, 14vw); 
+            line-height: 0.9;
             text-transform: uppercase;
             letter-spacing: -0.03em;
             color: white;
-            white-space: nowrap;
+            width: 100%;
         }
-        .hero-name h1:last-of-type {
-            padding-left: clamp(2rem, 8vw, 16vw);
-        }
+        
+        /* Eliminamos el .hero-name h1:last-of-type para quitar la indentación */
+
         @media (max-width: 480px) {
             .hero-name h1 {
-                font-size: 13vw;
+                font-size: 15vw; /* Tamaño perfecto para móviles */
                 white-space: normal;
                 word-break: break-word;
-            }
-            .hero-name h1:last-of-type {
-                padding-left: 0;
             }
         }
         .line-mask { overflow: hidden; display: inline-block; }
@@ -367,7 +365,7 @@
         .project-title {
             font-family: 'Syne', sans-serif;
             font-weight: 800;
-            font-size: clamp(2rem, 9vw, 11vw);
+            font-size: clamp(2rem, 8vw, 10vw); /* Ajustado un poco para que no se corte en móviles grandes */
             line-height: 0.82;
             text-transform: uppercase;
             letter-spacing: -0.03em;
@@ -375,10 +373,9 @@
             transition: color 0.3s;
             word-break: break-word;
         }
-        .project-title span { display: block; }
-        .project-title span:nth-child(2) { padding-left: 5vw; }
-        @media (max-width: 480px) {
-            .project-title span:nth-child(2) { padding-left: 0; }
+        .project-title span { 
+            display: block; 
+            padding-left: 0 !important; /* Fuerza a que todo esté alineado a la izquierda */
         }
         .project-row:hover .project-title { color: rgba(255,255,255,0.6); }
         .project-meta {
