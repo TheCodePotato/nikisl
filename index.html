@@ -42,7 +42,6 @@
         .lenis.lenis-stopped { overflow: hidden; }
 
         body {
-            cursor: none;
             background-color: var(--bg);
             color: var(--fg);
             overflow-x: hidden;
@@ -51,12 +50,17 @@
             font-family: 'Inter', sans-serif;
         }
 
+        /* Only hide cursor on devices that have a fine pointer (mouse) */
+        @media (pointer: fine) {
+            body { cursor: none; }
+        }
+
         /* Scrollbar */
         ::-webkit-scrollbar { width: 3px; }
         ::-webkit-scrollbar-track { background: var(--bg); }
         ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
 
-        /* ─── CURSOR ─────────────────────────────────── */
+        /* ─── CURSOR (desktop only) ────────────────────── */
         #cursor {
             position: fixed;
             top: 0; left: 0;
@@ -73,6 +77,10 @@
         #cursor.expanded {
             width: 72px;
             height: 72px;
+        }
+        /* Hide cursor dot on touch devices */
+        @media (pointer: coarse) {
+            #cursor { display: none !important; }
         }
 
         /* ─── PRELOADER ───────────────────────────────── */
@@ -162,8 +170,17 @@
             color: rgba(255,255,255,0.35);
             background: none;
             border: none;
-            cursor: none;
+            cursor: pointer;
             transition: color 0.2s;
+            /* Minimum touch target */
+            min-width: 44px;
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        @media (pointer: fine) {
+            .lang-btn { cursor: none; min-width: auto; min-height: auto; display: inline; }
         }
         .lang-btn.active { color: var(--accent); }
         .lang-btn:not(.active):hover { color: rgba(255,255,255,0.8); }
@@ -221,7 +238,7 @@
         .hero-name h1 {
             font-family: 'Syne', sans-serif;
             font-weight: 800;
-            font-size: clamp(14vw, 16vw, 20vw);
+            font-size: clamp(2.5rem, 14vw, 20vw);
             line-height: 0.82;
             text-transform: uppercase;
             letter-spacing: -0.03em;
@@ -229,7 +246,17 @@
             white-space: nowrap;
         }
         .hero-name h1:last-of-type {
-            padding-left: clamp(8vw, 12vw, 16vw);
+            padding-left: clamp(2rem, 8vw, 16vw);
+        }
+        @media (max-width: 480px) {
+            .hero-name h1 {
+                font-size: 13vw;
+                white-space: normal;
+                word-break: break-word;
+            }
+            .hero-name h1:last-of-type {
+                padding-left: 0;
+            }
         }
         .line-mask { overflow: hidden; display: inline-block; }
         .reveal-hero { display: inline-block; }
@@ -329,23 +356,30 @@
             justify-content: space-between;
             align-items: flex-end;
             gap: 2rem;
-            cursor: none;
+            cursor: pointer;
             transition: background 0.4s;
         }
+        @media (pointer: fine) {
+            .project-row { cursor: none; }
+        }
         .project-row:hover { background: rgba(255,255,255,0.02); }
-        .project-main { flex: 1; }
+        .project-main { flex: 1; min-width: 0; }
         .project-title {
             font-family: 'Syne', sans-serif;
             font-weight: 800;
-            font-size: clamp(10vw, 9vw, 11vw);
+            font-size: clamp(2rem, 9vw, 11vw);
             line-height: 0.82;
             text-transform: uppercase;
             letter-spacing: -0.03em;
             color: white;
             transition: color 0.3s;
+            word-break: break-word;
         }
         .project-title span { display: block; }
         .project-title span:nth-child(2) { padding-left: 5vw; }
+        @media (max-width: 480px) {
+            .project-title span:nth-child(2) { padding-left: 0; }
+        }
         .project-row:hover .project-title { color: rgba(255,255,255,0.6); }
         .project-meta {
             text-align: right;
@@ -477,20 +511,21 @@
         .contact-cta {
             font-family: 'Syne', sans-serif;
             font-weight: 800;
-            font-size: clamp(12vw, 10vw, 13vw);
-            line-height: 0.82;
+            font-size: clamp(2.5rem, 8vw, 10vw);
+            line-height: 0.85;
             text-transform: uppercase;
             letter-spacing: -0.03em;
             color: #050505;
             text-decoration: none;
             display: inline-block;
             transition: color 0.25s;
+            word-break: break-word;
         }
         .contact-cta:hover { color: var(--accent); }
         .contact-wa {
             font-family: 'Syne', sans-serif;
             font-weight: 800;
-            font-size: clamp(5vw, 4.5vw, 6vw);
+            font-size: clamp(1.25rem, 4vw, 5vw);
             line-height: 1;
             text-transform: uppercase;
             letter-spacing: -0.02em;
@@ -575,12 +610,29 @@
 
         /* ─── MOBILE ──────────────────────────────────── */
         @media (max-width: 768px) {
-            nav#navbar { padding: 1.2rem 1.5rem; flex-wrap: wrap; gap: 0.75rem; }
-            #hero { padding: 1.5rem 1.5rem 2.5rem; }
-            #context, #experience { padding: 5rem 1.5rem; }
-            .project-row { padding: 3rem 1.5rem; flex-direction: column; align-items: flex-start; }
+            nav#navbar { padding: 1rem 1rem; flex-wrap: wrap; gap: 0.5rem; }
+            .nav-status { display: none; }
+            .lang-switcher { gap: 0.5rem; }
+            #hero { padding: 1.5rem 1rem 2rem; }
+            .hero-bottom { flex-direction: column; gap: 1.5rem; align-items: flex-start; }
+            .hero-scroll { text-align: left; }
+            #context, #experience { padding: 4rem 1rem; }
+            .project-row { padding: 2.5rem 1rem; flex-direction: column; align-items: flex-start; }
             .project-meta { text-align: left; }
-            #contact { padding: 5rem 1.5rem; }
+            #contact { padding: 4rem 1rem; }
+            .contact-copy { margin-top: 3rem; }
+        }
+
+        /* ─── SMALL PHONES ────────────────────────────── */
+        @media (max-width: 380px) {
+            nav#navbar { padding: 0.8rem 0.75rem; }
+            .lang-switcher { gap: 0.25rem; }
+            .lang-btn { font-size: 9px; letter-spacing: 0.1em; }
+        }
+
+        /* ─── TOUCH DEVICE OVERRIDES ──────────────────── */
+        @media (pointer: coarse) {
+            a, button { cursor: pointer; }
         }
     </style>
 </head>
@@ -965,42 +1017,50 @@
     }, 28);
 
     /* ══════════════════════════════════════════════════
-       2. LENIS SMOOTH SCROLL
+       2. LENIS SMOOTH SCROLL (desktop only)
     ══════════════════════════════════════════════════ */
-    const lenis = new Lenis({
-        duration: 1.15,
-        easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        smooth: true,
-        smoothTouch: false,
-        touchMultiplier: 2,
-    });
+    const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+    let lenis = null;
 
-    gsap.ticker.add(time => lenis.raf(time * 1000));
-    gsap.ticker.lagSmoothing(0);
-    lenis.on('scroll', ScrollTrigger.update);
+    if (!isTouchDevice) {
+        lenis = new Lenis({
+            duration: 1.15,
+            easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smooth: true,
+            smoothTouch: false,
+            touchMultiplier: 2,
+        });
+
+        gsap.ticker.add(time => lenis.raf(time * 1000));
+        gsap.ticker.lagSmoothing(0);
+        lenis.on('scroll', ScrollTrigger.update);
+    }
 
     /* ══════════════════════════════════════════════════
-       3. CUSTOM CURSOR
+       3. CUSTOM CURSOR (desktop only)
     ══════════════════════════════════════════════════ */
     const cursor = document.getElementById('cursor');
-    let mx = window.innerWidth / 2, my = window.innerHeight / 2;
-    let cx = mx, cy = my;
 
-    window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-    window.addEventListener('mouseleave', () => { gsap.to(cursor, { opacity: 0, duration: 0.2 }); });
-    window.addEventListener('mouseenter', () => { gsap.to(cursor, { opacity: 1, duration: 0.2 }); });
+    if (!isTouchDevice) {
+        let mx = window.innerWidth / 2, my = window.innerHeight / 2;
+        let cx = mx, cy = my;
 
-    (function tickCursor() {
-        cx += (mx - cx) * 0.12;
-        cy += (my - cy) * 0.12;
-        cursor.style.transform = `translate3d(${cx}px, ${cy}px, 0) translate(-50%, -50%)`;
-        requestAnimationFrame(tickCursor);
-    })();
+        window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+        window.addEventListener('mouseleave', () => { gsap.to(cursor, { opacity: 0, duration: 0.2 }); });
+        window.addEventListener('mouseenter', () => { gsap.to(cursor, { opacity: 1, duration: 0.2 }); });
 
-    document.querySelectorAll('.magnetic, a, button').forEach(el => {
-        el.addEventListener('mouseenter', () => cursor.classList.add('expanded'));
-        el.addEventListener('mouseleave', () => cursor.classList.remove('expanded'));
-    });
+        (function tickCursor() {
+            cx += (mx - cx) * 0.12;
+            cy += (my - cy) * 0.12;
+            cursor.style.transform = `translate3d(${cx}px, ${cy}px, 0) translate(-50%, -50%)`;
+            requestAnimationFrame(tickCursor);
+        })();
+
+        document.querySelectorAll('.magnetic, a, button').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('expanded'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('expanded'));
+        });
+    }
 
     /* ══════════════════════════════════════════════════
        4. GSAP ANIMATIONS
