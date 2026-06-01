@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NIKITA SLAVYNER | AI BUILDER</title>
-    <meta name="description" content="Nikita Slavyner — AI Researcher, Software Builder. Specialized in Logic Systems & Human-Computer Interaction. Based in Lleida, Spain.">
-    
+    <meta name="description"
+        content="Nikita Slavyner — AI Researcher, Software Builder. Specialized in Logic Systems & Human-Computer Interaction. Based in Lleida, Spain.">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -26,20 +30,38 @@
     </script>
 
     <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
         :root {
             --bg: #050505;
             --fg: #FFFFFF;
             --accent: #ff4500;
             --border: #1a1a1a;
-            --muted: rgba(255,255,255,0.4);
+            --muted: rgba(255, 255, 255, 0.4);
         }
 
-        html { height: auto; background: var(--bg); }
-        html.lenis { height: auto; }
-        .lenis.lenis-smooth { scroll-behavior: auto !important; }
-        .lenis.lenis-stopped { overflow: hidden; }
+        html {
+            height: auto;
+            background: var(--bg);
+        }
+
+        html.lenis {
+            height: auto;
+        }
+
+        .lenis.lenis-smooth {
+            scroll-behavior: auto !important;
+        }
+
+        .lenis.lenis-stopped {
+            overflow: hidden;
+        }
 
         body {
             background-color: var(--bg);
@@ -52,35 +74,52 @@
 
         /* Only hide cursor on devices that have a fine pointer (mouse) */
         @media (pointer: fine) {
-            body { cursor: none; }
+            body {
+                cursor: none;
+            }
         }
 
         /* Scrollbar */
-        ::-webkit-scrollbar { width: 3px; }
-        ::-webkit-scrollbar-track { background: var(--bg); }
-        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+        ::-webkit-scrollbar {
+            width: 3px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 2px;
+        }
 
         /* ─── CURSOR (desktop only) ────────────────────── */
         #cursor {
             position: fixed;
-            top: 0; left: 0;
-            width: 10px; height: 10px;
+            top: 0;
+            left: 0;
+            width: 10px;
+            height: 10px;
             background: white;
             border-radius: 50%;
             pointer-events: none;
             mix-blend-mode: difference;
             z-index: 9999;
             will-change: transform;
-            transition: width 0.25s cubic-bezier(0.34,1.56,0.64,1),
-                        height 0.25s cubic-bezier(0.34,1.56,0.64,1);
+            transition: width 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+                height 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
+
         #cursor.expanded {
             width: 72px;
             height: 72px;
         }
+
         /* Hide cursor dot on touch devices */
         @media (pointer: coarse) {
-            #cursor { display: none !important; }
+            #cursor {
+                display: none !important;
+            }
         }
 
         /* ─── PRELOADER ───────────────────────────────── */
@@ -95,6 +134,7 @@
             justify-content: center;
             transform-origin: top center;
         }
+
         #preloader .pre-label {
             font-family: 'Syne', sans-serif;
             font-weight: 800;
@@ -105,6 +145,7 @@
             margin-bottom: 1.5rem;
             opacity: 0.35;
         }
+
         #ascii-bar {
             font-family: 'ui-monospace', 'SFMono-Regular', monospace;
             font-size: clamp(14px, 2vw, 22px);
@@ -113,6 +154,7 @@
             letter-spacing: 0.15em;
             white-space: pre;
         }
+
         #pre-log {
             margin-top: 2rem;
             font-family: 'ui-monospace', monospace;
@@ -124,6 +166,7 @@
             line-height: 1.8;
             text-transform: uppercase;
         }
+
         #pre-pct {
             margin-top: 1.5rem;
             font-family: 'Syne', sans-serif;
@@ -136,7 +179,8 @@
         /* ─── NAVBAR ──────────────────────────────────── */
         nav#navbar {
             position: fixed;
-            top: 0; left: 0;
+            top: 0;
+            left: 0;
             width: 100%;
             z-index: 500;
             padding: 1.5rem 2.5rem;
@@ -146,6 +190,7 @@
             mix-blend-mode: difference;
             pointer-events: none;
         }
+
         .nav-logo {
             font-family: 'Syne', sans-serif;
             font-weight: 800;
@@ -155,19 +200,25 @@
             color: white;
             pointer-events: auto;
         }
-        .nav-logo sup { font-size: 0.5em; vertical-align: super; }
+
+        .nav-logo sup {
+            font-size: 0.5em;
+            vertical-align: super;
+        }
+
         .lang-switcher {
             display: flex;
             gap: 1.25rem;
             pointer-events: auto;
         }
+
         .lang-btn {
             font-family: 'Inter', sans-serif;
             font-size: 10px;
             font-weight: 600;
             letter-spacing: 0.2em;
             text-transform: uppercase;
-            color: rgba(255,255,255,0.35);
+            color: rgba(255, 255, 255, 0.35);
             background: none;
             border: none;
             cursor: pointer;
@@ -179,15 +230,29 @@
             align-items: center;
             justify-content: center;
         }
+
         @media (pointer: fine) {
-            .lang-btn { cursor: none; min-width: auto; min-height: auto; display: inline; }
+            .lang-btn {
+                cursor: none;
+                min-width: auto;
+                min-height: auto;
+                display: inline;
+            }
         }
-        .lang-btn.active { color: var(--accent); }
-        .lang-btn:not(.active):hover { color: rgba(255,255,255,0.8); }
+
+        .lang-btn.active {
+            color: var(--accent);
+        }
+
+        .lang-btn:not(.active):hover {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
         .nav-status {
             text-align: right;
             pointer-events: auto;
         }
+
         .nav-status span {
             display: block;
             font-family: 'Inter', sans-serif;
@@ -197,10 +262,15 @@
             color: white;
             line-height: 1.6;
         }
-        .nav-status span:last-child { color: rgba(255,255,255,0.4); }
+
+        .nav-status span:last-child {
+            color: rgba(255, 255, 255, 0.4);
+        }
 
         /* ─── SECTION COMMONS ─────────────────────────── */
-        section { border-bottom: 1px solid var(--border); }
+        section {
+            border-bottom: 1px solid var(--border);
+        }
 
         .section-num {
             font-family: 'Inter', sans-serif;
@@ -222,76 +292,86 @@
             padding: 1.5rem 2.5rem 3rem;
             overflow: hidden;
         }
+
         .hero-grid-line {
             position: absolute;
-            top: 0; bottom: 0;
+            top: 0;
+            bottom: 0;
             width: 1px;
             background: var(--border);
             pointer-events: none;
         }
+
         .hero-name {
             position: relative;
             z-index: 10;
             mix-blend-mode: difference;
             pointer-events: none;
         }
+
         .hero-name h1 {
             font-family: 'Syne', sans-serif;
             font-weight: 800;
             /* Tamaño ajustado para que NUNCA se corte: */
-            font-size: clamp(3rem, 11vw, 14vw); 
+            font-size: clamp(3rem, 11vw, 14vw);
             line-height: 0.9;
             text-transform: uppercase;
             letter-spacing: -0.03em;
             color: white;
             width: 100%;
         }
-        
+
         /* Eliminamos el .hero-name h1:last-of-type para quitar la indentación */
 
-        @media (max-width: 480px) {
-            .hero-name h1 {
-                font-size: 15vw; /* Tamaño perfecto para móviles */
-                white-space: normal;
-                word-break: break-word;
+        @media (max-width: 768px) {
+            #hero {
+                min-height: 85vh;
+                justify-content: center;
+                /* centra verticalmente el contenido */
+                padding: 2rem 1rem;
+                text-align: center;
             }
-        }
-        .line-mask { overflow: hidden; display: inline-block; }
-        .reveal-hero { display: inline-block; }
 
-        /* Hero bottom bar */
-        .hero-bottom {
-            position: relative;
-            z-index: 10;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-top: 3rem;
-            mix-blend-mode: difference;
-            pointer-events: none;
-        }
-        .hero-tagline {
-            font-family: 'Inter', sans-serif;
-            font-size: clamp(10px, 1vw, 12px);
-            font-weight: 400;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: white;
-            line-height: 2;
-            max-width: 340px;
-        }
-        .hero-scroll {
-            font-family: 'Inter', sans-serif;
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            color: var(--accent);
-            text-align: right;
+            .hero-name {
+                mix-blend-mode: normal;
+                /* evita problemas de contraste en móvil */
+                margin: 0 auto;
+                width: 100%;
+            }
+
+            .hero-name h1 {
+                font-size: clamp(2.5rem, 15vw, 5rem) !important;
+                line-height: 0.85;
+                letter-spacing: -0.02em;
+            }
+
+            .hero-name h1:first-child {
+                margin-bottom: 0.25rem;
+            }
+
+            .hero-bottom {
+                flex-direction: column;
+                align-items: center;
+                margin-top: 2rem;
+                gap: 1rem;
+            }
+
+            .hero-tagline {
+                font-size: 8px;
+                max-width: 100%;
+                text-align: center;
+            }
+
+            .hero-scroll {
+                text-align: center;
+            }
         }
 
         /* ─── CONTEXT ─────────────────────────────────── */
-        #context { padding: 7rem 2.5rem; }
+        #context {
+            padding: 7rem 2.5rem;
+        }
+
         .ctx-grid {
             max-width: 1440px;
             margin: 0 auto;
@@ -299,9 +379,14 @@
             grid-template-columns: 1fr 3fr;
             gap: 4rem;
         }
+
         @media (max-width: 768px) {
-            .ctx-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .ctx-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
         }
+
         .ctx-statement {
             font-family: 'Syne', sans-serif;
             font-weight: 700;
@@ -311,7 +396,11 @@
             letter-spacing: -0.02em;
             color: white;
         }
-        .ctx-statement .dim { color: var(--muted); }
+
+        .ctx-statement .dim {
+            color: var(--muted);
+        }
+
         .ctx-stats {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -320,12 +409,19 @@
             padding-top: 2.5rem;
             border-top: 1px solid var(--border);
         }
+
         @media (max-width: 900px) {
-            .ctx-stats { grid-template-columns: repeat(2, 1fr); }
+            .ctx-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
+
         @media (max-width: 480px) {
-            .ctx-stats { grid-template-columns: 1fr; }
+            .ctx-stats {
+                grid-template-columns: 1fr;
+            }
         }
+
         .stat-block .stat-label {
             font-family: 'Inter', sans-serif;
             font-size: 9px;
@@ -336,13 +432,17 @@
             margin-bottom: 1rem;
             transition: color 0.2s;
         }
-        .stat-block:hover .stat-label { color: var(--accent); }
+
+        .stat-block:hover .stat-label {
+            color: var(--accent);
+        }
+
         .stat-block ul {
             font-family: 'Syne', sans-serif;
             font-size: clamp(0.85rem, 1.2vw, 1.1rem);
             font-weight: 600;
             text-transform: uppercase;
-            color: rgba(255,255,255,0.75);
+            color: rgba(255, 255, 255, 0.75);
             list-style: none;
             line-height: 2;
         }
@@ -357,15 +457,27 @@
             cursor: pointer;
             transition: background 0.4s;
         }
+
         @media (pointer: fine) {
-            .project-row { cursor: none; }
+            .project-row {
+                cursor: none;
+            }
         }
-        .project-row:hover { background: rgba(255,255,255,0.02); }
-        .project-main { flex: 1; min-width: 0; }
+
+        .project-row:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .project-main {
+            flex: 1;
+            min-width: 0;
+        }
+
         .project-title {
             font-family: 'Syne', sans-serif;
             font-weight: 800;
-            font-size: clamp(2rem, 8vw, 10vw); /* Ajustado un poco para que no se corte en móviles grandes */
+            font-size: clamp(2rem, 8vw, 10vw);
+            /* Ajustado un poco para que no se corte en móviles grandes */
             line-height: 0.82;
             text-transform: uppercase;
             letter-spacing: -0.03em;
@@ -373,15 +485,22 @@
             transition: color 0.3s;
             word-break: break-word;
         }
-        .project-title span { 
-            display: block; 
-            padding-left: 0 !important; /* Fuerza a que todo esté alineado a la izquierda */
+
+        .project-title span {
+            display: block;
+            padding-left: 0 !important;
+            /* Fuerza a que todo esté alineado a la izquierda */
         }
-        .project-row:hover .project-title { color: rgba(255,255,255,0.6); }
+
+        .project-row:hover .project-title {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
         .project-meta {
             text-align: right;
             flex-shrink: 0;
         }
+
         .project-year {
             font-family: 'Syne', sans-serif;
             font-weight: 700;
@@ -391,6 +510,7 @@
             display: block;
             margin-bottom: 0.4rem;
         }
+
         .project-tags {
             font-family: 'Inter', sans-serif;
             font-size: 10px;
@@ -401,7 +521,10 @@
         }
 
         /* ─── EXPERIENCE ──────────────────────────────── */
-        #experience { padding: 7rem 2.5rem; }
+        #experience {
+            padding: 7rem 2.5rem;
+        }
+
         .exp-grid {
             max-width: 1440px;
             margin: 0 auto;
@@ -409,9 +532,14 @@
             grid-template-columns: 1fr 3fr;
             gap: 4rem;
         }
+
         @media (max-width: 768px) {
-            .exp-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .exp-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
         }
+
         .exp-statement {
             font-family: 'Syne', sans-serif;
             font-weight: 700;
@@ -421,7 +549,11 @@
             letter-spacing: -0.02em;
             color: white;
         }
-        .exp-statement .dim { color: var(--muted); }
+
+        .exp-statement .dim {
+            color: var(--muted);
+        }
+
         .exp-cards {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -430,15 +562,23 @@
             padding-top: 2.5rem;
             border-top: 1px solid var(--border);
         }
+
         @media (max-width: 640px) {
-            .exp-cards { grid-template-columns: 1fr; }
+            .exp-cards {
+                grid-template-columns: 1fr;
+            }
         }
+
         .exp-card {
             border-left: 1px solid #2a2a2a;
             padding-left: 1.5rem;
             transition: border-color 0.4s;
         }
-        .exp-card:hover { border-color: var(--accent); }
+
+        .exp-card:hover {
+            border-color: var(--accent);
+        }
+
         .exp-card-title {
             font-family: 'Syne', sans-serif;
             font-weight: 700;
@@ -448,6 +588,7 @@
             color: white;
             margin-bottom: 0.35rem;
         }
+
         .exp-card-date {
             font-family: 'Inter', sans-serif;
             font-size: 9px;
@@ -458,15 +599,17 @@
             margin-bottom: 1rem;
             display: block;
         }
+
         .exp-card-desc {
             font-family: 'Inter', sans-serif;
             font-size: clamp(11px, 0.9vw, 13px);
             font-weight: 400;
             letter-spacing: 0.12em;
             text-transform: uppercase;
-            color: rgba(255,255,255,0.5);
+            color: rgba(255, 255, 255, 0.5);
             line-height: 1.9;
         }
+
         .exp-card ul {
             list-style: disc;
             padding-left: 1.2em;
@@ -474,7 +617,7 @@
             font-size: clamp(11px, 0.9vw, 13px);
             letter-spacing: 0.12em;
             text-transform: uppercase;
-            color: rgba(255,255,255,0.5);
+            color: rgba(255, 255, 255, 0.5);
             line-height: 2;
         }
 
@@ -490,6 +633,7 @@
             text-align: center;
             border-bottom: none;
         }
+
         .contact-num {
             font-family: 'Inter', sans-serif;
             font-size: 10px;
@@ -499,12 +643,14 @@
             color: var(--accent);
             margin-bottom: 3.5rem;
         }
+
         .contact-main {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 0;
         }
+
         .contact-cta {
             font-family: 'Syne', sans-serif;
             font-weight: 800;
@@ -518,7 +664,11 @@
             transition: color 0.25s;
             word-break: break-word;
         }
-        .contact-cta:hover { color: var(--accent); }
+
+        .contact-cta:hover {
+            color: var(--accent);
+        }
+
         .contact-wa {
             font-family: 'Syne', sans-serif;
             font-weight: 800;
@@ -526,7 +676,7 @@
             line-height: 1;
             text-transform: uppercase;
             letter-spacing: -0.02em;
-            color: rgba(5,5,5,0.3);
+            color: rgba(5, 5, 5, 0.3);
             text-decoration: none;
             display: inline-flex;
             align-items: center;
@@ -534,27 +684,47 @@
             margin-top: 2rem;
             transition: color 0.25s;
         }
-        .contact-wa:hover { color: #25D366; }
+
+        .contact-wa:hover {
+            color: #25D366;
+        }
+
         .contact-wa-icon {
             display: inline-block;
             width: 0.8em;
             height: 0.8em;
             vertical-align: middle;
         }
+
         .contact-copy {
             margin-top: 6rem;
             font-family: 'Inter', sans-serif;
             font-size: 9px;
             letter-spacing: 0.25em;
             text-transform: uppercase;
-            color: rgba(5,5,5,0.3);
+            color: rgba(5, 5, 5, 0.3);
         }
 
         /* ─── REVEAL MASKS ────────────────────────────── */
-        .reveal-wrap { overflow: hidden; display: inline-block; }
-        .reveal-inner { display: inline-block; will-change: transform; }
-        .reveal-block { overflow: hidden; display: block; }
-        .reveal-block-inner { display: block; will-change: transform; }
+        .reveal-wrap {
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .reveal-inner {
+            display: inline-block;
+            will-change: transform;
+        }
+
+        .reveal-block {
+            overflow: hidden;
+            display: block;
+        }
+
+        .reveal-block-inner {
+            display: block;
+            will-change: transform;
+        }
 
         /* ─── NOISE OVERLAY ───────────────────────────── */
         #noise {
@@ -574,12 +744,14 @@
             border-bottom: 1px solid var(--border);
             padding: 1.2rem 0;
         }
+
         .marquee-track {
             display: flex;
             gap: 0;
             width: max-content;
             animation: marquee-scroll 18s linear infinite;
         }
+
         .marquee-item {
             font-family: 'Syne', sans-serif;
             font-weight: 800;
@@ -590,10 +762,20 @@
             padding: 0 3rem;
             white-space: nowrap;
         }
-        .marquee-item .dot { color: var(--accent); margin-right: 3rem; }
+
+        .marquee-item .dot {
+            color: var(--accent);
+            margin-right: 3rem;
+        }
+
         @keyframes marquee-scroll {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
         }
 
         /* ─── HORIZONTAL RULE ACCENT ──────────────────── */
@@ -607,32 +789,143 @@
 
         /* ─── MOBILE ──────────────────────────────────── */
         @media (max-width: 768px) {
-            nav#navbar { padding: 1rem 1rem; flex-wrap: wrap; gap: 0.5rem; }
-            .nav-status { display: none; }
-            .lang-switcher { gap: 0.5rem; }
-            #hero { padding: 1.5rem 1rem 2rem; }
-            .hero-bottom { flex-direction: column; gap: 1.5rem; align-items: flex-start; }
-            .hero-scroll { text-align: left; }
-            #context, #experience { padding: 4rem 1rem; }
-            .project-row { padding: 2.5rem 1rem; flex-direction: column; align-items: flex-start; }
-            .project-meta { text-align: left; }
-            #contact { padding: 4rem 1rem; }
-            .contact-copy { margin-top: 3rem; }
+            nav#navbar {
+                padding: 1rem 1rem;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+
+            .nav-status {
+                display: none;
+            }
+
+            .lang-switcher {
+                gap: 0.5rem;
+            }
+
+            #hero {
+                padding: 1.5rem 1rem 2rem;
+            }
+
+            .hero-bottom {
+                flex-direction: column;
+                gap: 1.5rem;
+                align-items: flex-start;
+            }
+
+            .hero-scroll {
+                text-align: left;
+            }
+
+            #context,
+            #experience {
+                padding: 4rem 1rem;
+            }
+
+            .project-row {
+                padding: 2.5rem 1rem;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .project-meta {
+                text-align: left;
+            }
+
+            #contact {
+                padding: 4rem 1rem;
+            }
+
+            .contact-copy {
+                margin-top: 3rem;
+            }
         }
 
         /* ─── SMALL PHONES ────────────────────────────── */
         @media (max-width: 380px) {
-            nav#navbar { padding: 0.8rem 0.75rem; }
-            .lang-switcher { gap: 0.25rem; }
-            .lang-btn { font-size: 9px; letter-spacing: 0.1em; }
+            nav#navbar {
+                padding: 0.8rem 0.75rem;
+            }
+
+            .lang-switcher {
+                gap: 0.25rem;
+            }
+
+            .lang-btn {
+                font-size: 9px;
+                letter-spacing: 0.1em;
+            }
         }
 
         /* ─── TOUCH DEVICE OVERRIDES ──────────────────── */
         @media (pointer: coarse) {
-            a, button { cursor: pointer; }
+
+            a,
+            button {
+                cursor: pointer;
+            }
+        }
+
+        /* Oculta la cascada por defecto (escritorio) */
+        .mobile-waterfall {
+            display: none;
+        }
+
+        /* Solo la mostramos en móviles (pantallas menores a 768px) */
+        @media (max-width: 768px) {
+            .mobile-waterfall {
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                pointer-events: none;
+                z-index: 5;
+                opacity: 0.2;
+            }
+
+            .waterfall-track {
+                display: flex;
+                flex-direction: column;
+                animation: waterfallFlow 14s linear infinite;
+                will-change: transform;
+            }
+
+            .waterfall-item {
+                font-family: 'Syne', sans-serif;
+                font-weight: 800;
+                font-size: clamp(2rem, 18vw, 6rem);
+                text-transform: uppercase;
+                color: white;
+                white-space: nowrap;
+                padding: 0.5rem 0;
+                letter-spacing: -0.02em;
+                opacity: 0.7;
+            }
+
+            @keyframes waterfallFlow {
+                0% {
+                    transform: translateY(0%);
+                }
+
+                100% {
+                    transform: translateY(-50%);
+                }
+            }
+
+            /* Para que el texto real quede encima de la cascada */
+            .hero-name,
+            .hero-bottom {
+                position: relative;
+                z-index: 10;
+                text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            }
         }
     </style>
 </head>
+
 <body>
 
     <!-- Noise texture -->
@@ -676,7 +969,19 @@
         <!-- Decorative vertical grid lines -->
         <div class="hero-grid-line" style="left:33.33%" aria-hidden="true"></div>
         <div class="hero-grid-line" style="left:66.66%" aria-hidden="true"></div>
-
+        <!-- Mobile waterfall effect -->
+        <div class="mobile-waterfall" aria-hidden="true">
+            <div class="waterfall-track">
+                <div class="waterfall-item">NIKITA</div>
+                <div class="waterfall-item">SLAVYNER</div>
+                <div class="waterfall-item">NIKITA</div>
+                <div class="waterfall-item">SLAVYNER</div>
+                <div class="waterfall-item">NIKITA</div>
+                <div class="waterfall-item">SLAVYNER</div>
+                <div class="waterfall-item">NIKITA</div>
+                <div class="waterfall-item">SLAVYNER</div>
+            </div>
+        </div>
         <div class="hero-name">
             <h1><span class="line-mask"><span class="reveal-hero">NIKITA</span></span></h1>
             <h1><span class="line-mask"><span class="reveal-hero">SLAVYNER</span></span></h1>
@@ -684,13 +989,18 @@
 
         <div class="hero-bottom">
             <p class="hero-tagline">
-                <span class="reveal-block"><span class="reveal-block-inner" data-i18n="hero_sub1">INVESTIGADOR IA / DESARROLLADOR</span></span>
-                <span class="reveal-block"><span class="reveal-block-inner" data-i18n="hero_sub2">ESPECIALIZADO EN SISTEMAS LÓGICOS</span></span>
-                <span class="reveal-block"><span class="reveal-block-inner" data-i18n="hero_sub3">E INTERACCIÓN HUMANO-COMPUTADORA.</span></span>
+                <span class="reveal-block"><span class="reveal-block-inner" data-i18n="hero_sub1">INVESTIGADOR IA /
+                        DESARROLLADOR</span></span>
+                <span class="reveal-block"><span class="reveal-block-inner" data-i18n="hero_sub2">ESPECIALIZADO EN
+                        SISTEMAS LÓGICOS</span></span>
+                <span class="reveal-block"><span class="reveal-block-inner" data-i18n="hero_sub3">E INTERACCIÓN
+                        HUMANO-COMPUTADORA.</span></span>
             </p>
             <div class="hero-scroll">
-                <span class="reveal-block"><span class="reveal-block-inner" data-i18n="hero_scroll1">DESLIZA PARA EXPLORAR</span></span>
-                <span class="reveal-block" style="margin-top:0.5rem;"><span class="reveal-block-inner" style="font-size:1.4em;">↓</span></span>
+                <span class="reveal-block"><span class="reveal-block-inner" data-i18n="hero_scroll1">DESLIZA PARA
+                        EXPLORAR</span></span>
+                <span class="reveal-block" style="margin-top:0.5rem;"><span class="reveal-block-inner"
+                        style="font-size:1.4em;">↓</span></span>
             </div>
         </div>
     </section>
@@ -710,13 +1020,17 @@
             </div>
             <div>
                 <p class="ctx-statement">
-                    <span class="reveal-wrap"><span class="reveal-inner dim" data-i18n="ctx_body1">UN CREADOR MULTILINGÜE, SOCIABLE Y</span></span>
+                    <span class="reveal-wrap"><span class="reveal-inner dim" data-i18n="ctx_body1">UN CREADOR
+                            MULTILINGÜE, SOCIABLE Y</span></span>
                     <br>
-                    <span class="reveal-wrap"><span class="reveal-inner" data-i18n="ctx_body2">ALTAMENTE CURIOSO ENFOCADO EN</span></span>
+                    <span class="reveal-wrap"><span class="reveal-inner" data-i18n="ctx_body2">ALTAMENTE CURIOSO
+                            ENFOCADO EN</span></span>
                     <br>
-                    <span class="reveal-wrap"><span class="reveal-inner dim" data-i18n="ctx_body3">INTELIGENCIA ARTIFICIAL,</span></span>
+                    <span class="reveal-wrap"><span class="reveal-inner dim" data-i18n="ctx_body3">INTELIGENCIA
+                            ARTIFICIAL,</span></span>
                     <br>
-                    <span class="reveal-wrap"><span class="reveal-inner" data-i18n="ctx_body4">SISTEMAS LÓGICOS Y RESOLUCIÓN DE PROBLEMAS.</span></span>
+                    <span class="reveal-wrap"><span class="reveal-inner" data-i18n="ctx_body4">SISTEMAS LÓGICOS Y
+                            RESOLUCIÓN DE PROBLEMAS.</span></span>
                 </p>
 
                 <div class="ctx-stats">
@@ -756,7 +1070,8 @@
     <section>
         <div class="project-row magnetic">
             <div class="project-main">
-                <p class="section-num" style="margin-bottom:1.5rem;" data-i18n="proj1_num">02 // PROYECTO DE INVESTIGACIÓN (TDR)</p>
+                <p class="section-num" style="margin-bottom:1.5rem;" data-i18n="proj1_num">02 // PROYECTO DE
+                    INVESTIGACIÓN (TDR)</p>
                 <div class="project-title">
                     <span data-i18n="proj1_title1">COPILOTO DE IA</span>
                     <span data-i18n="proj1_title2">PARA WINDOWS</span>
@@ -794,18 +1109,22 @@
             </div>
             <div>
                 <p class="exp-statement">
-                    <span class="reveal-wrap"><span class="reveal-inner dim" data-i18n="exp_body1">IMPULSADO POR EL APRENDIZAJE CONTINUO,</span></span>
+                    <span class="reveal-wrap"><span class="reveal-inner dim" data-i18n="exp_body1">IMPULSADO POR EL
+                            APRENDIZAJE CONTINUO,</span></span>
                     <br>
-                    <span class="reveal-wrap"><span class="reveal-inner" data-i18n="exp_body2">LA CREACIÓN DE SISTEMAS PRÁCTICOS Y</span></span>
+                    <span class="reveal-wrap"><span class="reveal-inner" data-i18n="exp_body2">LA CREACIÓN DE SISTEMAS
+                            PRÁCTICOS Y</span></span>
                     <br>
-                    <span class="reveal-wrap"><span class="reveal-inner" data-i18n="exp_body3">EL ENTENDIMIENTO DE CÓMO FUNCIONAN LAS COSAS.</span></span>
+                    <span class="reveal-wrap"><span class="reveal-inner" data-i18n="exp_body3">EL ENTENDIMIENTO DE CÓMO
+                            FUNCIONAN LAS COSAS.</span></span>
                 </p>
 
                 <div class="exp-cards">
                     <div class="exp-card">
                         <p class="exp-card-title" data-i18n="exp_tutor_title">PROFESOR DE INGLÉS</p>
                         <span class="exp-card-date" data-i18n="exp_tutor_date">JUNIO 2024 - PRESENTE</span>
-                        <p class="exp-card-desc" data-i18n="exp_tutor_desc">ADAPTÁNDOME A DISTINTOS RITMOS DE APRENDIZAJE CON COMUNICACIÓN Y PACIENCIA.</p>
+                        <p class="exp-card-desc" data-i18n="exp_tutor_desc">ADAPTÁNDOME A DISTINTOS RITMOS DE
+                            APRENDIZAJE CON COMUNICACIÓN Y PACIENCIA.</p>
                     </div>
                     <div class="exp-card">
                         <p class="exp-card-title" data-i18n="exp_val_title">VALORES CLAVE</p>
@@ -827,9 +1146,12 @@
         <p class="contact-num" data-i18n="conn_num">05 // INICIAR CONEXIÓN</p>
         <div class="contact-main">
             <a href="mailto:nikita.slavy@gmail.com" class="contact-cta magnetic" data-i18n="conn_talk">HABLEMOS</a>
-            <a href="https://wa.me/34693678567" target="_blank" rel="noopener noreferrer" class="contact-wa magnetic" aria-label="WhatsApp">
-                <svg class="contact-wa-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            <a href="https://wa.me/34693678567" target="_blank" rel="noopener noreferrer" class="contact-wa magnetic"
+                aria-label="WhatsApp">
+                <svg class="contact-wa-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true">
+                    <path
+                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
                 </svg>
                 <span data-i18n="conn_wa">WHATSAPP ME</span>
             </a>
@@ -843,379 +1165,380 @@
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
 
     <script>
-    gsap.registerPlugin(ScrollTrigger);
+        gsap.registerPlugin(ScrollTrigger);
 
-    /* ══════════════════════════════════════════════════
-       0. TRANSLATIONS
-    ══════════════════════════════════════════════════ */
-    const translations = {
-        es: {
-            nav_avail: "DISPONIBLE PARA CONTRATAR", nav_loc: "LLEIDA, ESPAÑA",
-            hero_sub1: "INVESTIGADOR IA / DESARROLLADOR", hero_sub2: "ESPECIALIZADO EN SISTEMAS LÓGICOS", hero_sub3: "E INTERACCIÓN HUMANO-COMPUTADORA.", hero_scroll1: "DESLIZA PARA EXPLORAR",
-            ctx_num: "01 // CONTEXTO",
-            ctx_body1: "UN CREADOR MULTILINGÜE, SOCIABLE Y", ctx_body2: "ALTAMENTE CURIOSO ENFOCADO EN", ctx_body3: "INTELIGENCIA ARTIFICIAL,", ctx_body4: "SISTEMAS LÓGICOS Y RESOLUCIÓN DE PROBLEMAS.",
-            ctx_l_title: "IDIOMAS", ctx_l_es: "ES (Nativo)", ctx_l_ca: "CA (Nativo)", ctx_l_ru: "RU (Nativo)", ctx_l_en: "EN (Avanzado)", ctx_l_uk: "UK (Avanzado)",
-            ctx_t_title: "ENFOQUE TÉCNICO", ctx_t_1: "Python", ctx_t_2: "Copilotos IA", ctx_t_3: "Flujos Lógicos", ctx_t_4: "Sistemas Web",
-            ctx_n_title: "DESTACADOS", ctx_n_1: "Torneo Mundial Ajedrez (Expo Dubai 2020)", ctx_n_2: "Representé España entre 53 países", ctx_n_3: "Esquí Competitivo",
-            proj1_num: "02 // PROYECTO DE INVESTIGACIÓN (TDR)", proj1_title1: "COPILOTO DE IA", proj1_title2: "PARA WINDOWS", proj1_tag: "Python / LLMs / Automatización",
-            proj2_num: "03 // COMERCIAL", proj2_title1: "PRESENCIA", proj2_title2: "DIGITAL", proj2_tag: "Web / SEO / Interfaces", proj2_year: "ONGOING",
-            exp_num: "04 // EXPERIENCIA Y FILOSOFÍA",
-            exp_body1: "IMPULSADO POR EL APRENDIZAJE CONTINUO,", exp_body2: "LA CREACIÓN DE SISTEMAS PRÁCTICOS Y", exp_body3: "EL ENTENDIMIENTO DE CÓMO FUNCIONAN LAS COSAS.",
-            exp_tutor_title: "PROFESOR DE INGLÉS", exp_tutor_date: "JUNIO 2024 - PRESENTE", exp_tutor_desc: "ADAPTÁNDOME A DISTINTOS RITMOS DE APRENDIZAJE CON COMUNICACIÓN Y PACIENCIA.",
-            exp_val_title: "VALORES CLAVE", exp_val_sub: "FILOSOFÍA DE TRABAJO", exp_val_1: "Curiosidad y Autoaprendizaje", exp_val_2: "Pensamiento Analítico", exp_val_3: "Resolución de Problemas", exp_val_4: "Adaptabilidad",
-            conn_num: "05 // INICIAR CONEXIÓN", conn_talk: "HABLEMOS", conn_wa: "WHATSAPP ME", conn_copy: "© 2026 NIKITA SLAVYNER. TODOS LOS DERECHOS RESERVADOS.",
-            marquee_1: "INVESTIGADOR IA", marquee_2: "PYTHON", marquee_3: "SISTEMAS LÓGICOS", marquee_4: "COPILOTO WINDOWS", marquee_5: "MULTILINGÜE", marquee_6: "CHESS — EXPO DUBAI", marquee_7: "LLEIDA, ESPAÑA"
-        },
-        en: {
-            nav_avail: "AVAILABLE FOR HIRE", nav_loc: "LLEIDA, SPAIN",
-            hero_sub1: "AI RESEARCHER / SOFTWARE BUILDER", hero_sub2: "SPECIALIZED IN LOGIC SYSTEMS", hero_sub3: "AND HUMAN-COMPUTER INTERACTION.", hero_scroll1: "SCROLL TO EXPLORE",
-            ctx_num: "01 // CONTEXT",
-            ctx_body1: "A MULTILINGUAL, SOCIAL, AND HIGHLY", ctx_body2: "CURIOUS BUILDER FOCUSED ON", ctx_body3: "ARTIFICIAL INTELLIGENCE,", ctx_body4: "LOGIC SYSTEMS, AND SOLVING REAL PROBLEMS.",
-            ctx_l_title: "LANGUAGES", ctx_l_es: "ES (Native)", ctx_l_ca: "CA (Native)", ctx_l_ru: "RU (Native)", ctx_l_en: "EN (Advanced)", ctx_l_uk: "UK (Advanced)",
-            ctx_t_title: "TECH FOCUS", ctx_t_1: "Python", ctx_t_2: "AI Copilots", ctx_t_3: "Logic Flows", ctx_t_4: "Web Systems",
-            ctx_n_title: "NOTABLE", ctx_n_1: "World Chess Tournament (Expo Dubai 2020)", ctx_n_2: "Represented Spain among 53 countries", ctx_n_3: "Competitive Skiing",
-            proj1_num: "02 // RESEARCH PROJECT (TDR)", proj1_title1: "WINDOWS AI", proj1_title2: "COPILOT", proj1_tag: "Python / LLMs / Automation",
-            proj2_num: "03 // COMMERCIAL", proj2_title1: "DIGITAL", proj2_title2: "PRESENCE", proj2_tag: "Web / SEO / Interfaces", proj2_year: "ONGOING",
-            exp_num: "04 // EXPERIENCE & PHILOSOPHY",
-            exp_body1: "DRIVEN BY CONTINUOUS LEARNING,", exp_body2: "BUILDING PRACTICAL SYSTEMS, AND", exp_body3: "UNDERSTANDING HOW THINGS WORK.",
-            exp_tutor_title: "ENGLISH TUTOR", exp_tutor_date: "JUNE 2024 - PRESENT", exp_tutor_desc: "ADAPTING TO DIFFERENT LEARNING SPEEDS WITH COMMUNICATION AND PATIENCE.",
-            exp_val_title: "CORE VALUES", exp_val_sub: "WORKING PHILOSOPHY", exp_val_1: "Curiosity & Self-Learning", exp_val_2: "Analytical Thinking", exp_val_3: "Practical Problem Solving", exp_val_4: "Adaptability",
-            conn_num: "05 // INITIATE CONNECTION", conn_talk: "LET'S TALK", conn_wa: "WHATSAPP ME", conn_copy: "© 2026 NIKITA SLAVYNER. ALL RIGHTS RESERVED.",
-            marquee_1: "AI RESEARCHER", marquee_2: "PYTHON", marquee_3: "LOGIC SYSTEMS", marquee_4: "WINDOWS COPILOT", marquee_5: "MULTILINGUAL", marquee_6: "CHESS — EXPO DUBAI", marquee_7: "LLEIDA, SPAIN"
-        },
-        ca: {
-            nav_avail: "DISPONIBLE PER CONTRACTAR", nav_loc: "LLEIDA, ESPANYA",
-            hero_sub1: "INVESTIGADOR IA / DESENVOLUPADOR", hero_sub2: "ESPECIALITZAT EN SISTEMES LÒGICS", hero_sub3: "I INTERACCIÓ HUMÀ-ORDINADOR.", hero_scroll1: "DESLLISA PER EXPLORAR",
-            ctx_num: "01 // CONTEXT",
-            ctx_body1: "UN CREADOR MULTILINGÜE, SOCIABLE I", ctx_body2: "ALTAMENT CURIÓS ENFOCAT EN", ctx_body3: "INTEL·LIGÈNCIA ARTIFICIAL,", ctx_body4: "SISTEMES LÒGICS I RESOLUCIÓ DE PROBLEMES.",
-            ctx_l_title: "IDIOMES", ctx_l_es: "ES (Natiu)", ctx_l_ca: "CA (Natiu)", ctx_l_ru: "RU (Natiu)", ctx_l_en: "EN (Avançat)", ctx_l_uk: "UK (Avançat)",
-            ctx_t_title: "ENFOCAMENT TÈCNIC", ctx_t_1: "Python", ctx_t_2: "Copilots d'IA", ctx_t_3: "Fluxos Lògics", ctx_t_4: "Sistemes Web",
-            ctx_n_title: "DESTACATS", ctx_n_1: "Torneig Mundial d'Escacs (Expo Dubai 2020)", ctx_n_2: "Vaig representar Espanya entre 53 països", ctx_n_3: "Esquí Competitiu",
-            proj1_num: "02 // PROJECTE D'INVESTIGACIÓ (TDR)", proj1_title1: "COPILOT D'IA", proj1_title2: "PER A WINDOWS", proj1_tag: "Python / LLMs / Automatització",
-            proj2_num: "03 // COMERCIAL", proj2_title1: "PRESÈNCIA", proj2_title2: "DIGITAL", proj2_tag: "Web / SEO / Interfícies", proj2_year: "EN CURS",
-            exp_num: "04 // EXPERIÈNCIA I FILOSOFIA",
-            exp_body1: "IMPULSAT PER L'APRENENTATGE CONTINU,", exp_body2: "LA CREACIÓ DE SISTEMES PRÀCTICS I", exp_body3: "L'ENTENIMENT DE COM FUNCIONEN LES COSES.",
-            exp_tutor_title: "PROFESSOR D'ANGLÈS", exp_tutor_date: "JUNY 2024 - PRESENT", exp_tutor_desc: "ADAPTANT-ME A DIFERENTS RITMES D'APRENENTATGE AMB COMUNICACIÓ I PACIÈNCIA.",
-            exp_val_title: "VALORS CLAU", exp_val_sub: "FILOSOFIA DE TREBALL", exp_val_1: "Curiositat i Autoaprenentatge", exp_val_2: "Pensament Analític", exp_val_3: "Resolució de Problemes", exp_val_4: "Adaptabilitat",
-            conn_num: "05 // INICIAR CONNEXIÓ", conn_talk: "PARLEM", conn_wa: "WHATSAPP ME", conn_copy: "© 2026 NIKITA SLAVYNER. TOTS ELS DRETS RESERVATS.",
-            marquee_1: "INVESTIGADOR IA", marquee_2: "PYTHON", marquee_3: "SISTEMES LÒGICS", marquee_4: "COPILOT WINDOWS", marquee_5: "MULTILINGÜE", marquee_6: "ESCACS — EXPO DUBAI", marquee_7: "LLEIDA, ESPANYA"
-        },
-        ru: {
-            nav_avail: "ДОСТУПЕН ДЛЯ НАЙМА", nav_loc: "ЛЬЕЙДА, ИСПАНИЯ",
-            hero_sub1: "ИССЛЕДОВАТЕЛЬ ИИ / РАЗРАБОТЧИК", hero_sub2: "СПЕЦИАЛИСТ ПО ЛОГИЧЕСКИМ СИСТЕМАМ", hero_sub3: "И ВЗАИМОДЕЙСТВИЮ ЧЕЛОВЕК-КОМПЬЮТЕР.", hero_scroll1: "ЛИСТАЙТЕ ВНИЗ",
-            ctx_num: "01 // КОНТЕКСТ",
-            ctx_body1: "МУЛЬТИЯЗЫЧНЫЙ, ОБЩИТЕЛЬНЫЙ И", ctx_body2: "ОЧЕНЬ ЛЮБОЗНАТЕЛЬНЫЙ РАЗРАБОТЧИК В СФЕРЕ", ctx_body3: "ИСКУССТВЕННОГО ИНТЕЛЛЕКТА,", ctx_body4: "ЛОГИЧЕСКИХ СИСТЕМ И РЕШЕНИЯ ПРОБЛЕМ.",
-            ctx_l_title: "ЯЗЫКИ", ctx_l_es: "ES (Родной)", ctx_l_ca: "CA (Родной)", ctx_l_ru: "RU (Родной)", ctx_l_en: "EN (Продвинутый)", ctx_l_uk: "UK (Продвинутый)",
-            ctx_t_title: "ТЕХНОЛОГИИ", ctx_t_1: "Python", ctx_t_2: "ИИ-ассистенты", ctx_t_3: "Логические схемы", ctx_t_4: "Веб-системы",
-            ctx_n_title: "ДОСТИЖЕНИЯ", ctx_n_1: "Всемирный шахматный турнир (Expo Dubai 2020)", ctx_n_2: "Представлял Испанию среди 53 стран", ctx_n_3: "Горнолыжный спорт",
-            proj1_num: "02 // ИССЛЕДОВАТЕЛЬСКИЙ ПРОЕКТ (TDR)", proj1_title1: "ИИ-АССИСТЕНТ", proj1_title2: "ДЛЯ WINDOWS", proj1_tag: "Python / LLM / Автоматизация",
-            proj2_num: "03 // КОММЕРЦИЯ", proj2_title1: "ЦИФРОВОЕ", proj2_title2: "ПРИСУТСТВИЕ", proj2_tag: "Веб / SEO / Интерфейсы", proj2_year: "В ПРОЦЕССЕ",
-            exp_num: "04 // ОПЫТ И ФИЛОСОФИЯ",
-            exp_body1: "ДВИЖИМЫЙ НЕПРЕРЫВНЫМ ОБУЧЕНИЕМ,", exp_body2: "СОЗДАНИЕМ ПРАКТИЧНЫХ СИСТЕМ И", exp_body3: "ПОНИМАНИЕМ ТОГО, КАК ВСЕ УСТРОЕНО.",
-            exp_tutor_title: "ПРЕПОДАВАТЕЛЬ АНГЛИЙСКОГО", exp_tutor_date: "ИЮНЬ 2024 - НАСТОЯЩЕЕ ВРЕМЯ", exp_tutor_desc: "АДАПТАЦИЯ К РАЗНЫМ ТЕМПАМ ОБУЧЕНИЯ С ПОМОЩЬЮ ОБЩЕНИЯ И ТЕРПЕНИЯ.",
-            exp_val_title: "КЛЮЧЕВЫЕ ЦЕННОСТИ", exp_val_sub: "РАБОЧАЯ ФИЛОСОФИЯ", exp_val_1: "Любознательность и самообучение", exp_val_2: "Аналитическое мышление", exp_val_3: "Решение проблем", exp_val_4: "Адаптивность",
-            conn_num: "05 // СВЯЗАТЬСЯ", conn_talk: "НАПИСАТЬ МНЕ", conn_wa: "WHATSAPP ME", conn_copy: "© 2026 НИКИТА СЛАВИНЕР. ВСЕ ПРАВА ЗАЩИЩЕНЫ.",
-            marquee_1: "ИССЛЕДОВАТЕЛЬ ИИ", marquee_2: "PYTHON", marquee_3: "ЛОГИЧЕСКИЕ СИСТЕМЫ", marquee_4: "АССИСТЕНТ WINDOWS", marquee_5: "МУЛЬТИЯЗЫЧНЫЙ", marquee_6: "ШАХМАТЫ — EXPO DUBAI", marquee_7: "ЛЬЕЙДА, ИСПАНИЯ"
-        },
-        uk: {
-            nav_avail: "ДОСТУПНИЙ ДЛЯ НАЙМУ", nav_loc: "ЛЬЄЙДА, ІСПАНІЯ",
-            hero_sub1: "ДОСЛІДНИК ШІ / РОЗРОБНИК", hero_sub2: "СПЕЦІАЛІСТ З ЛОГІЧНИХ СИСТЕМ", hero_sub3: "ТА ВЗАЄМОДІЇ ЛЮДИНА-КОМП'ЮТЕР.", hero_scroll1: "ГОРТАЙТЕ ВНИЗ",
-            ctx_num: "01 // КОНТЕКСТ",
-            ctx_body1: "МУЛЬТИМОВНИЙ, КОМУНІКАБЕЛЬНИЙ ТА", ctx_body2: "ДУЖЕ ДОПИТЛИВИЙ РОЗРОБНИК У СФЕРІ", ctx_body3: "ШТУЧНОГО ІНТЕЛЕКТУ,", ctx_body4: "ЛОГІЧНИХ СИСТЕМ ТА ВИРІШЕННЯ ПРОБЛЕМ.",
-            ctx_l_title: "МОВИ", ctx_l_es: "ES (Рідна)", ctx_l_ca: "CA (Рідна)", ctx_l_ru: "RU (Рідна)", ctx_l_en: "EN (Просунутий)", ctx_l_uk: "UK (Просунутий)",
-            ctx_t_title: "ТЕХНОЛОГІЇ", ctx_t_1: "Python", ctx_t_2: "ШІ-асистенти", ctx_t_3: "Логічні схеми", ctx_t_4: "Веб-системи",
-            ctx_n_title: "ДОСЯГНЕННЯ", ctx_n_1: "Всесвітній шаховий турнір (Expo Dubai 2020)", ctx_n_2: "Представляв Іспанію серед 53 країн", ctx_n_3: "Гірськолижний спорт",
-            proj1_num: "02 // ДОСЛІДНИЦЬКИЙ ПРОЄКТ (TDR)", proj1_title1: "ШІ-АСИСТЕНТ", proj1_title2: "ДЛЯ WINDOWS", proj1_tag: "Python / LLM / Автоматизація",
-            proj2_num: "03 // КОМЕРЦІЯ", proj2_title1: "ЦИФРОВА", proj2_title2: "ПРИСУТНІСТЬ", proj2_tag: "Веб / SEO / Інтерфейси", proj2_year: "У ПРОЦЕСІ",
-            exp_num: "04 // ДОСВІД ТА ФІЛОСОФІЯ",
-            exp_body1: "РУХОМИЙ БЕЗПЕРЕРВНИМ НАВЧАННЯМ,", exp_body2: "СТВОРЕННЯМ ПРАКТИЧНИХ СИСТЕМ ТА", exp_body3: "РОЗУМІННЯМ ТОГО, ЯК УСЕ ВЛАШТОВАНО.",
-            exp_tutor_title: "ВИКЛАДАЧ АНГЛІЙСЬКОЇ", exp_tutor_date: "ЧЕРВЕНЬ 2024 - ТЕПЕРІШНІЙ ЧАС", exp_tutor_desc: "АДАПТАЦІЯ ДО РІЗНИХ ТЕМПІВ НАВЧАННЯ ЗА ДОПОМОГОЮ СПІЛКУВАННЯ ТА ТЕРПІННЯ.",
-            exp_val_title: "КЛЮЧОВІ ЦІННОСТІ", exp_val_sub: "РОБОЧА ФІЛОСОФІЯ", exp_val_1: "Допитливість та самонавчання", exp_val_2: "Аналітичне мислення", exp_val_3: "Вирішення проблем", exp_val_4: "Адаптивність",
-            conn_num: "05 // ЗВ'ЯЗАТИСЯ", conn_talk: "НАПИСАТИ МЕНІ", conn_wa: "WHATSAPP ME", conn_copy: "© 2026 НІКІТА СЛАВІНЕР. ВСІ ПРАВА ЗАХИЩЕНІ.",
-            marquee_1: "ДОСЛІДНИК ШІ", marquee_2: "PYTHON", marquee_3: "ЛОГІЧНІ СИСТЕМИ", marquee_4: "АСИСТЕНТ WINDOWS", marquee_5: "МУЛЬТИМОВНИЙ", marquee_6: "ШАХИ — EXPO DUBAI", marquee_7: "ЛЬЄЙДА, ІСПАНІЯ"
-        }
-    };
-
-    const i18nEls = document.querySelectorAll('[data-i18n]');
-    const langBtns = document.querySelectorAll('.lang-btn');
-    let currentLang = 'es';
-
-    function buildMarquee(lang) {
-        const t = translations[lang];
-        const items = [
-            t.marquee_1, t.marquee_2, t.marquee_3,
-            t.marquee_4, t.marquee_5, t.marquee_6, t.marquee_7
-        ];
-        // Duplicate for seamless loop
-        const all = [...items, ...items];
-        document.getElementById('marqueeTrack').innerHTML = all
-            .map(item => `<span class="marquee-item"><span class="dot">◆</span>${item}</span>`)
-            .join('');
-    }
-
-    function setLanguage(lang) {
-        if (!translations[lang]) return;
-        currentLang = lang;
-        i18nEls.forEach(el => {
-            const key = el.getAttribute('data-i18n');
-            if (translations[lang][key] !== undefined) {
-                el.textContent = translations[lang][key];
+        /* ══════════════════════════════════════════════════
+           0. TRANSLATIONS
+        ══════════════════════════════════════════════════ */
+        const translations = {
+            es: {
+                nav_avail: "DISPONIBLE PARA CONTRATAR", nav_loc: "LLEIDA, ESPAÑA",
+                hero_sub1: "INVESTIGADOR IA / DESARROLLADOR", hero_sub2: "ESPECIALIZADO EN SISTEMAS LÓGICOS", hero_sub3: "E INTERACCIÓN HUMANO-COMPUTADORA.", hero_scroll1: "DESLIZA PARA EXPLORAR",
+                ctx_num: "01 // CONTEXTO",
+                ctx_body1: "UN CREADOR MULTILINGÜE, SOCIABLE Y", ctx_body2: "ALTAMENTE CURIOSO ENFOCADO EN", ctx_body3: "INTELIGENCIA ARTIFICIAL,", ctx_body4: "SISTEMAS LÓGICOS Y RESOLUCIÓN DE PROBLEMAS.",
+                ctx_l_title: "IDIOMAS", ctx_l_es: "ES (Nativo)", ctx_l_ca: "CA (Nativo)", ctx_l_ru: "RU (Nativo)", ctx_l_en: "EN (Avanzado)", ctx_l_uk: "UK (Avanzado)",
+                ctx_t_title: "ENFOQUE TÉCNICO", ctx_t_1: "Python", ctx_t_2: "Copilotos IA", ctx_t_3: "Flujos Lógicos", ctx_t_4: "Sistemas Web",
+                ctx_n_title: "DESTACADOS", ctx_n_1: "Torneo Mundial Ajedrez (Expo Dubai 2020)", ctx_n_2: "Representé España entre 53 países", ctx_n_3: "Esquí Competitivo",
+                proj1_num: "02 // PROYECTO DE INVESTIGACIÓN (TDR)", proj1_title1: "COPILOTO DE IA", proj1_title2: "PARA WINDOWS", proj1_tag: "Python / LLMs / Automatización",
+                proj2_num: "03 // COMERCIAL", proj2_title1: "PRESENCIA", proj2_title2: "DIGITAL", proj2_tag: "Web / SEO / Interfaces", proj2_year: "ONGOING",
+                exp_num: "04 // EXPERIENCIA Y FILOSOFÍA",
+                exp_body1: "IMPULSADO POR EL APRENDIZAJE CONTINUO,", exp_body2: "LA CREACIÓN DE SISTEMAS PRÁCTICOS Y", exp_body3: "EL ENTENDIMIENTO DE CÓMO FUNCIONAN LAS COSAS.",
+                exp_tutor_title: "PROFESOR DE INGLÉS", exp_tutor_date: "JUNIO 2024 - PRESENTE", exp_tutor_desc: "ADAPTÁNDOME A DISTINTOS RITMOS DE APRENDIZAJE CON COMUNICACIÓN Y PACIENCIA.",
+                exp_val_title: "VALORES CLAVE", exp_val_sub: "FILOSOFÍA DE TRABAJO", exp_val_1: "Curiosidad y Autoaprendizaje", exp_val_2: "Pensamiento Analítico", exp_val_3: "Resolución de Problemas", exp_val_4: "Adaptabilidad",
+                conn_num: "05 // INICIAR CONEXIÓN", conn_talk: "HABLEMOS", conn_wa: "WHATSAPP ME", conn_copy: "© 2026 NIKITA SLAVYNER. TODOS LOS DERECHOS RESERVADOS.",
+                marquee_1: "INVESTIGADOR IA", marquee_2: "PYTHON", marquee_3: "SISTEMAS LÓGICOS", marquee_4: "COPILOTO WINDOWS", marquee_5: "MULTILINGÜE", marquee_6: "CHESS — EXPO DUBAI", marquee_7: "LLEIDA, ESPAÑA"
+            },
+            en: {
+                nav_avail: "AVAILABLE FOR HIRE", nav_loc: "LLEIDA, SPAIN",
+                hero_sub1: "AI RESEARCHER / SOFTWARE BUILDER", hero_sub2: "SPECIALIZED IN LOGIC SYSTEMS", hero_sub3: "AND HUMAN-COMPUTER INTERACTION.", hero_scroll1: "SCROLL TO EXPLORE",
+                ctx_num: "01 // CONTEXT",
+                ctx_body1: "A MULTILINGUAL, SOCIAL, AND HIGHLY", ctx_body2: "CURIOUS BUILDER FOCUSED ON", ctx_body3: "ARTIFICIAL INTELLIGENCE,", ctx_body4: "LOGIC SYSTEMS, AND SOLVING REAL PROBLEMS.",
+                ctx_l_title: "LANGUAGES", ctx_l_es: "ES (Native)", ctx_l_ca: "CA (Native)", ctx_l_ru: "RU (Native)", ctx_l_en: "EN (Advanced)", ctx_l_uk: "UK (Advanced)",
+                ctx_t_title: "TECH FOCUS", ctx_t_1: "Python", ctx_t_2: "AI Copilots", ctx_t_3: "Logic Flows", ctx_t_4: "Web Systems",
+                ctx_n_title: "NOTABLE", ctx_n_1: "World Chess Tournament (Expo Dubai 2020)", ctx_n_2: "Represented Spain among 53 countries", ctx_n_3: "Competitive Skiing",
+                proj1_num: "02 // RESEARCH PROJECT (TDR)", proj1_title1: "WINDOWS AI", proj1_title2: "COPILOT", proj1_tag: "Python / LLMs / Automation",
+                proj2_num: "03 // COMMERCIAL", proj2_title1: "DIGITAL", proj2_title2: "PRESENCE", proj2_tag: "Web / SEO / Interfaces", proj2_year: "ONGOING",
+                exp_num: "04 // EXPERIENCE & PHILOSOPHY",
+                exp_body1: "DRIVEN BY CONTINUOUS LEARNING,", exp_body2: "BUILDING PRACTICAL SYSTEMS, AND", exp_body3: "UNDERSTANDING HOW THINGS WORK.",
+                exp_tutor_title: "ENGLISH TUTOR", exp_tutor_date: "JUNE 2024 - PRESENT", exp_tutor_desc: "ADAPTING TO DIFFERENT LEARNING SPEEDS WITH COMMUNICATION AND PATIENCE.",
+                exp_val_title: "CORE VALUES", exp_val_sub: "WORKING PHILOSOPHY", exp_val_1: "Curiosity & Self-Learning", exp_val_2: "Analytical Thinking", exp_val_3: "Practical Problem Solving", exp_val_4: "Adaptability",
+                conn_num: "05 // INITIATE CONNECTION", conn_talk: "LET'S TALK", conn_wa: "WHATSAPP ME", conn_copy: "© 2026 NIKITA SLAVYNER. ALL RIGHTS RESERVED.",
+                marquee_1: "AI RESEARCHER", marquee_2: "PYTHON", marquee_3: "LOGIC SYSTEMS", marquee_4: "WINDOWS COPILOT", marquee_5: "MULTILINGUAL", marquee_6: "CHESS — EXPO DUBAI", marquee_7: "LLEIDA, SPAIN"
+            },
+            ca: {
+                nav_avail: "DISPONIBLE PER CONTRACTAR", nav_loc: "LLEIDA, ESPANYA",
+                hero_sub1: "INVESTIGADOR IA / DESENVOLUPADOR", hero_sub2: "ESPECIALITZAT EN SISTEMES LÒGICS", hero_sub3: "I INTERACCIÓ HUMÀ-ORDINADOR.", hero_scroll1: "DESLLISA PER EXPLORAR",
+                ctx_num: "01 // CONTEXT",
+                ctx_body1: "UN CREADOR MULTILINGÜE, SOCIABLE I", ctx_body2: "ALTAMENT CURIÓS ENFOCAT EN", ctx_body3: "INTEL·LIGÈNCIA ARTIFICIAL,", ctx_body4: "SISTEMES LÒGICS I RESOLUCIÓ DE PROBLEMES.",
+                ctx_l_title: "IDIOMES", ctx_l_es: "ES (Natiu)", ctx_l_ca: "CA (Natiu)", ctx_l_ru: "RU (Natiu)", ctx_l_en: "EN (Avançat)", ctx_l_uk: "UK (Avançat)",
+                ctx_t_title: "ENFOCAMENT TÈCNIC", ctx_t_1: "Python", ctx_t_2: "Copilots d'IA", ctx_t_3: "Fluxos Lògics", ctx_t_4: "Sistemes Web",
+                ctx_n_title: "DESTACATS", ctx_n_1: "Torneig Mundial d'Escacs (Expo Dubai 2020)", ctx_n_2: "Vaig representar Espanya entre 53 països", ctx_n_3: "Esquí Competitiu",
+                proj1_num: "02 // PROJECTE D'INVESTIGACIÓ (TDR)", proj1_title1: "COPILOT D'IA", proj1_title2: "PER A WINDOWS", proj1_tag: "Python / LLMs / Automatització",
+                proj2_num: "03 // COMERCIAL", proj2_title1: "PRESÈNCIA", proj2_title2: "DIGITAL", proj2_tag: "Web / SEO / Interfícies", proj2_year: "EN CURS",
+                exp_num: "04 // EXPERIÈNCIA I FILOSOFIA",
+                exp_body1: "IMPULSAT PER L'APRENENTATGE CONTINU,", exp_body2: "LA CREACIÓ DE SISTEMES PRÀCTICS I", exp_body3: "L'ENTENIMENT DE COM FUNCIONEN LES COSES.",
+                exp_tutor_title: "PROFESSOR D'ANGLÈS", exp_tutor_date: "JUNY 2024 - PRESENT", exp_tutor_desc: "ADAPTANT-ME A DIFERENTS RITMES D'APRENENTATGE AMB COMUNICACIÓ I PACIÈNCIA.",
+                exp_val_title: "VALORS CLAU", exp_val_sub: "FILOSOFIA DE TREBALL", exp_val_1: "Curiositat i Autoaprenentatge", exp_val_2: "Pensament Analític", exp_val_3: "Resolució de Problemes", exp_val_4: "Adaptabilitat",
+                conn_num: "05 // INICIAR CONNEXIÓ", conn_talk: "PARLEM", conn_wa: "WHATSAPP ME", conn_copy: "© 2026 NIKITA SLAVYNER. TOTS ELS DRETS RESERVATS.",
+                marquee_1: "INVESTIGADOR IA", marquee_2: "PYTHON", marquee_3: "SISTEMES LÒGICS", marquee_4: "COPILOT WINDOWS", marquee_5: "MULTILINGÜE", marquee_6: "ESCACS — EXPO DUBAI", marquee_7: "LLEIDA, ESPANYA"
+            },
+            ru: {
+                nav_avail: "ДОСТУПЕН ДЛЯ НАЙМА", nav_loc: "ЛЬЕЙДА, ИСПАНИЯ",
+                hero_sub1: "ИССЛЕДОВАТЕЛЬ ИИ / РАЗРАБОТЧИК", hero_sub2: "СПЕЦИАЛИСТ ПО ЛОГИЧЕСКИМ СИСТЕМАМ", hero_sub3: "И ВЗАИМОДЕЙСТВИЮ ЧЕЛОВЕК-КОМПЬЮТЕР.", hero_scroll1: "ЛИСТАЙТЕ ВНИЗ",
+                ctx_num: "01 // КОНТЕКСТ",
+                ctx_body1: "МУЛЬТИЯЗЫЧНЫЙ, ОБЩИТЕЛЬНЫЙ И", ctx_body2: "ОЧЕНЬ ЛЮБОЗНАТЕЛЬНЫЙ РАЗРАБОТЧИК В СФЕРЕ", ctx_body3: "ИСКУССТВЕННОГО ИНТЕЛЛЕКТА,", ctx_body4: "ЛОГИЧЕСКИХ СИСТЕМ И РЕШЕНИЯ ПРОБЛЕМ.",
+                ctx_l_title: "ЯЗЫКИ", ctx_l_es: "ES (Родной)", ctx_l_ca: "CA (Родной)", ctx_l_ru: "RU (Родной)", ctx_l_en: "EN (Продвинутый)", ctx_l_uk: "UK (Продвинутый)",
+                ctx_t_title: "ТЕХНОЛОГИИ", ctx_t_1: "Python", ctx_t_2: "ИИ-ассистенты", ctx_t_3: "Логические схемы", ctx_t_4: "Веб-системы",
+                ctx_n_title: "ДОСТИЖЕНИЯ", ctx_n_1: "Всемирный шахматный турнир (Expo Dubai 2020)", ctx_n_2: "Представлял Испанию среди 53 стран", ctx_n_3: "Горнолыжный спорт",
+                proj1_num: "02 // ИССЛЕДОВАТЕЛЬСКИЙ ПРОЕКТ (TDR)", proj1_title1: "ИИ-АССИСТЕНТ", proj1_title2: "ДЛЯ WINDOWS", proj1_tag: "Python / LLM / Автоматизация",
+                proj2_num: "03 // КОММЕРЦИЯ", proj2_title1: "ЦИФРОВОЕ", proj2_title2: "ПРИСУТСТВИЕ", proj2_tag: "Веб / SEO / Интерфейсы", proj2_year: "В ПРОЦЕССЕ",
+                exp_num: "04 // ОПЫТ И ФИЛОСОФИЯ",
+                exp_body1: "ДВИЖИМЫЙ НЕПРЕРЫВНЫМ ОБУЧЕНИЕМ,", exp_body2: "СОЗДАНИЕМ ПРАКТИЧНЫХ СИСТЕМ И", exp_body3: "ПОНИМАНИЕМ ТОГО, КАК ВСЕ УСТРОЕНО.",
+                exp_tutor_title: "ПРЕПОДАВАТЕЛЬ АНГЛИЙСКОГО", exp_tutor_date: "ИЮНЬ 2024 - НАСТОЯЩЕЕ ВРЕМЯ", exp_tutor_desc: "АДАПТАЦИЯ К РАЗНЫМ ТЕМПАМ ОБУЧЕНИЯ С ПОМОЩЬЮ ОБЩЕНИЯ И ТЕРПЕНИЯ.",
+                exp_val_title: "КЛЮЧЕВЫЕ ЦЕННОСТИ", exp_val_sub: "РАБОЧАЯ ФИЛОСОФИЯ", exp_val_1: "Любознательность и самообучение", exp_val_2: "Аналитическое мышление", exp_val_3: "Решение проблем", exp_val_4: "Адаптивность",
+                conn_num: "05 // СВЯЗАТЬСЯ", conn_talk: "НАПИСАТЬ МНЕ", conn_wa: "WHATSAPP ME", conn_copy: "© 2026 НИКИТА СЛАВИНЕР. ВСЕ ПРАВА ЗАЩИЩЕНЫ.",
+                marquee_1: "ИССЛЕДОВАТЕЛЬ ИИ", marquee_2: "PYTHON", marquee_3: "ЛОГИЧЕСКИЕ СИСТЕМЫ", marquee_4: "АССИСТЕНТ WINDOWS", marquee_5: "МУЛЬТИЯЗЫЧНЫЙ", marquee_6: "ШАХМАТЫ — EXPO DUBAI", marquee_7: "ЛЬЕЙДА, ИСПАНИЯ"
+            },
+            uk: {
+                nav_avail: "ДОСТУПНИЙ ДЛЯ НАЙМУ", nav_loc: "ЛЬЄЙДА, ІСПАНІЯ",
+                hero_sub1: "ДОСЛІДНИК ШІ / РОЗРОБНИК", hero_sub2: "СПЕЦІАЛІСТ З ЛОГІЧНИХ СИСТЕМ", hero_sub3: "ТА ВЗАЄМОДІЇ ЛЮДИНА-КОМП'ЮТЕР.", hero_scroll1: "ГОРТАЙТЕ ВНИЗ",
+                ctx_num: "01 // КОНТЕКСТ",
+                ctx_body1: "МУЛЬТИМОВНИЙ, КОМУНІКАБЕЛЬНИЙ ТА", ctx_body2: "ДУЖЕ ДОПИТЛИВИЙ РОЗРОБНИК У СФЕРІ", ctx_body3: "ШТУЧНОГО ІНТЕЛЕКТУ,", ctx_body4: "ЛОГІЧНИХ СИСТЕМ ТА ВИРІШЕННЯ ПРОБЛЕМ.",
+                ctx_l_title: "МОВИ", ctx_l_es: "ES (Рідна)", ctx_l_ca: "CA (Рідна)", ctx_l_ru: "RU (Рідна)", ctx_l_en: "EN (Просунутий)", ctx_l_uk: "UK (Просунутий)",
+                ctx_t_title: "ТЕХНОЛОГІЇ", ctx_t_1: "Python", ctx_t_2: "ШІ-асистенти", ctx_t_3: "Логічні схеми", ctx_t_4: "Веб-системи",
+                ctx_n_title: "ДОСЯГНЕННЯ", ctx_n_1: "Всесвітній шаховий турнір (Expo Dubai 2020)", ctx_n_2: "Представляв Іспанію серед 53 країн", ctx_n_3: "Гірськолижний спорт",
+                proj1_num: "02 // ДОСЛІДНИЦЬКИЙ ПРОЄКТ (TDR)", proj1_title1: "ШІ-АСИСТЕНТ", proj1_title2: "ДЛЯ WINDOWS", proj1_tag: "Python / LLM / Автоматизація",
+                proj2_num: "03 // КОМЕРЦІЯ", proj2_title1: "ЦИФРОВА", proj2_title2: "ПРИСУТНІСТЬ", proj2_tag: "Веб / SEO / Інтерфейси", proj2_year: "У ПРОЦЕСІ",
+                exp_num: "04 // ДОСВІД ТА ФІЛОСОФІЯ",
+                exp_body1: "РУХОМИЙ БЕЗПЕРЕРВНИМ НАВЧАННЯМ,", exp_body2: "СТВОРЕННЯМ ПРАКТИЧНИХ СИСТЕМ ТА", exp_body3: "РОЗУМІННЯМ ТОГО, ЯК УСЕ ВЛАШТОВАНО.",
+                exp_tutor_title: "ВИКЛАДАЧ АНГЛІЙСЬКОЇ", exp_tutor_date: "ЧЕРВЕНЬ 2024 - ТЕПЕРІШНІЙ ЧАС", exp_tutor_desc: "АДАПТАЦІЯ ДО РІЗНИХ ТЕМПІВ НАВЧАННЯ ЗА ДОПОМОГОЮ СПІЛКУВАННЯ ТА ТЕРПІННЯ.",
+                exp_val_title: "КЛЮЧОВІ ЦІННОСТІ", exp_val_sub: "РОБОЧА ФІЛОСОФІЯ", exp_val_1: "Допитливість та самонавчання", exp_val_2: "Аналітичне мислення", exp_val_3: "Вирішення проблем", exp_val_4: "Адаптивність",
+                conn_num: "05 // ЗВ'ЯЗАТИСЯ", conn_talk: "НАПИСАТИ МЕНІ", conn_wa: "WHATSAPP ME", conn_copy: "© 2026 НІКІТА СЛАВІНЕР. ВСІ ПРАВА ЗАХИЩЕНІ.",
+                marquee_1: "ДОСЛІДНИК ШІ", marquee_2: "PYTHON", marquee_3: "ЛОГІЧНІ СИСТЕМИ", marquee_4: "АСИСТЕНТ WINDOWS", marquee_5: "МУЛЬТИМОВНИЙ", marquee_6: "ШАХИ — EXPO DUBAI", marquee_7: "ЛЬЄЙДА, ІСПАНІЯ"
             }
-        });
-        document.documentElement.lang = lang;
-        localStorage.setItem('ns_lang_v3', lang);
-        langBtns.forEach(btn => {
-            btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
-        });
-        buildMarquee(lang);
-        setTimeout(() => ScrollTrigger.refresh(), 120);
-    }
+        };
 
-    langBtns.forEach(btn => {
-        btn.addEventListener('click', () => setLanguage(btn.getAttribute('data-lang')));
-    });
+        const i18nEls = document.querySelectorAll('[data-i18n]');
+        const langBtns = document.querySelectorAll('.lang-btn');
+        let currentLang = 'es';
 
-    // Init language
-    const savedLang = localStorage.getItem('ns_lang_v3') || 'es';
-    setLanguage(savedLang);
-
-    /* ══════════════════════════════════════════════════
-       1. PRELOADER
-    ══════════════════════════════════════════════════ */
-    const preloader = document.getElementById('preloader');
-    const asciiBar  = document.getElementById('ascii-bar');
-    const prePct    = document.getElementById('pre-pct');
-    let   pctNum    = 0;
-
-    document.body.style.overflow = 'hidden';
-
-    const pctInterval = setInterval(() => {
-        pctNum += Math.floor(Math.random() * 5) + 2;
-        if (pctNum >= 100) pctNum = 100;
-        const filled = Math.floor(pctNum / 10);
-        asciiBar.textContent = `[${'#'.repeat(filled)}${'.'.repeat(10 - filled)}] ${pctNum}%`;
-        prePct.textContent = pctNum;
-
-        if (pctNum === 100) {
-            clearInterval(pctInterval);
-            setTimeout(() => {
-                gsap.to(preloader, {
-                    yPercent: -100,
-                    duration: 1.1,
-                    ease: 'expo.inOut',
-                    onComplete: () => {
-                        document.body.style.overflow = '';
-                        preloader.style.display = 'none';
-                        initAnimations();
-                    }
-                });
-            }, 350);
+        function buildMarquee(lang) {
+            const t = translations[lang];
+            const items = [
+                t.marquee_1, t.marquee_2, t.marquee_3,
+                t.marquee_4, t.marquee_5, t.marquee_6, t.marquee_7
+            ];
+            // Duplicate for seamless loop
+            const all = [...items, ...items];
+            document.getElementById('marqueeTrack').innerHTML = all
+                .map(item => `<span class="marquee-item"><span class="dot">◆</span>${item}</span>`)
+                .join('');
         }
-    }, 28);
 
-    /* ══════════════════════════════════════════════════
-       2. LENIS SMOOTH SCROLL (desktop only)
-    ══════════════════════════════════════════════════ */
-    const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
-    let lenis = null;
-
-    if (!isTouchDevice) {
-        lenis = new Lenis({
-            duration: 1.15,
-            easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            smooth: true,
-            smoothTouch: false,
-            touchMultiplier: 2,
-        });
-
-        gsap.ticker.add(time => lenis.raf(time * 1000));
-        gsap.ticker.lagSmoothing(0);
-        lenis.on('scroll', ScrollTrigger.update);
-    }
-
-    /* ══════════════════════════════════════════════════
-       3. CUSTOM CURSOR (desktop only)
-    ══════════════════════════════════════════════════ */
-    const cursor = document.getElementById('cursor');
-
-    if (!isTouchDevice) {
-        let mx = window.innerWidth / 2, my = window.innerHeight / 2;
-        let cx = mx, cy = my;
-
-        window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-        window.addEventListener('mouseleave', () => { gsap.to(cursor, { opacity: 0, duration: 0.2 }); });
-        window.addEventListener('mouseenter', () => { gsap.to(cursor, { opacity: 1, duration: 0.2 }); });
-
-        (function tickCursor() {
-            cx += (mx - cx) * 0.12;
-            cy += (my - cy) * 0.12;
-            cursor.style.transform = `translate3d(${cx}px, ${cy}px, 0) translate(-50%, -50%)`;
-            requestAnimationFrame(tickCursor);
-        })();
-
-        document.querySelectorAll('.magnetic, a, button').forEach(el => {
-            el.addEventListener('mouseenter', () => cursor.classList.add('expanded'));
-            el.addEventListener('mouseleave', () => cursor.classList.remove('expanded'));
-        });
-    }
-
-    /* ══════════════════════════════════════════════════
-       4. GSAP ANIMATIONS
-    ══════════════════════════════════════════════════ */
-    function initAnimations() {
-
-        // — Hero name slide-up
-        gsap.fromTo('.reveal-hero', 
-            { yPercent: 110 },
-            { yPercent: 0, duration: 1.6, stagger: 0.12, ease: 'expo.out', delay: 0.05 }
-        );
-
-        // — Hero tagline lines
-        gsap.fromTo('.hero-tagline .reveal-block-inner',
-            { yPercent: 110 },
-            { yPercent: 0, duration: 1.2, stagger: 0.08, ease: 'expo.out', delay: 0.4 }
-        );
-        gsap.fromTo('.hero-scroll .reveal-block-inner',
-            { yPercent: 110 },
-            { yPercent: 0, duration: 1.2, stagger: 0.1, ease: 'expo.out', delay: 0.65 }
-        );
-
-        // — Scroll-triggered reveals: all .reveal-inner spans
-        document.querySelectorAll('.reveal-inner').forEach(el => {
-            gsap.fromTo(el,
-                { yPercent: 105 },
-                {
-                    yPercent: 0,
-                    duration: 1.2,
-                    ease: 'expo.out',
-                    scrollTrigger: {
-                        trigger: el.closest('.reveal-wrap') || el,
-                        start: 'top 92%',
-                        toggleActions: 'play none none reverse'
-                    }
+        function setLanguage(lang) {
+            if (!translations[lang]) return;
+            currentLang = lang;
+            i18nEls.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key] !== undefined) {
+                    el.textContent = translations[lang][key];
                 }
-            );
+            });
+            document.documentElement.lang = lang;
+            localStorage.setItem('ns_lang_v3', lang);
+            langBtns.forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+            });
+            buildMarquee(lang);
+            setTimeout(() => ScrollTrigger.refresh(), 120);
+        }
+
+        langBtns.forEach(btn => {
+            btn.addEventListener('click', () => setLanguage(btn.getAttribute('data-lang')));
         });
 
-        // — Section numbers fade-in
-        document.querySelectorAll('.section-num').forEach((el, i) => {
-            gsap.fromTo(el,
-                { opacity: 0, x: -12 },
-                {
-                    opacity: 1, x: 0,
-                    duration: 0.8,
-                    ease: 'power3.out',
-                    scrollTrigger: {
-                        trigger: el,
-                        start: 'top 90%',
-                        toggleActions: 'play none none reverse'
+        // Init language
+        const savedLang = localStorage.getItem('ns_lang_v3') || 'es';
+        setLanguage(savedLang);
+
+        /* ══════════════════════════════════════════════════
+           1. PRELOADER
+        ══════════════════════════════════════════════════ */
+        const preloader = document.getElementById('preloader');
+        const asciiBar = document.getElementById('ascii-bar');
+        const prePct = document.getElementById('pre-pct');
+        let pctNum = 0;
+
+        document.body.style.overflow = 'hidden';
+
+        const pctInterval = setInterval(() => {
+            pctNum += Math.floor(Math.random() * 5) + 2;
+            if (pctNum >= 100) pctNum = 100;
+            const filled = Math.floor(pctNum / 10);
+            asciiBar.textContent = `[${'#'.repeat(filled)}${'.'.repeat(10 - filled)}] ${pctNum}%`;
+            prePct.textContent = pctNum;
+
+            if (pctNum === 100) {
+                clearInterval(pctInterval);
+                setTimeout(() => {
+                    gsap.to(preloader, {
+                        yPercent: -100,
+                        duration: 1.1,
+                        ease: 'expo.inOut',
+                        onComplete: () => {
+                            document.body.style.overflow = '';
+                            preloader.style.display = 'none';
+                            initAnimations();
+                        }
+                    });
+                }, 350);
+            }
+        }, 28);
+
+        /* ══════════════════════════════════════════════════
+           2. LENIS SMOOTH SCROLL (desktop only)
+        ══════════════════════════════════════════════════ */
+        const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+        let lenis = null;
+
+        if (!isTouchDevice) {
+            lenis = new Lenis({
+                duration: 1.15,
+                easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                smooth: true,
+                smoothTouch: false,
+                touchMultiplier: 2,
+            });
+
+            gsap.ticker.add(time => lenis.raf(time * 1000));
+            gsap.ticker.lagSmoothing(0);
+            lenis.on('scroll', ScrollTrigger.update);
+        }
+
+        /* ══════════════════════════════════════════════════
+           3. CUSTOM CURSOR (desktop only)
+        ══════════════════════════════════════════════════ */
+        const cursor = document.getElementById('cursor');
+
+        if (!isTouchDevice) {
+            let mx = window.innerWidth / 2, my = window.innerHeight / 2;
+            let cx = mx, cy = my;
+
+            window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+            window.addEventListener('mouseleave', () => { gsap.to(cursor, { opacity: 0, duration: 0.2 }); });
+            window.addEventListener('mouseenter', () => { gsap.to(cursor, { opacity: 1, duration: 0.2 }); });
+
+            (function tickCursor() {
+                cx += (mx - cx) * 0.12;
+                cy += (my - cy) * 0.12;
+                cursor.style.transform = `translate3d(${cx}px, ${cy}px, 0) translate(-50%, -50%)`;
+                requestAnimationFrame(tickCursor);
+            })();
+
+            document.querySelectorAll('.magnetic, a, button').forEach(el => {
+                el.addEventListener('mouseenter', () => cursor.classList.add('expanded'));
+                el.addEventListener('mouseleave', () => cursor.classList.remove('expanded'));
+            });
+        }
+
+        /* ══════════════════════════════════════════════════
+           4. GSAP ANIMATIONS
+        ══════════════════════════════════════════════════ */
+        function initAnimations() {
+
+            // — Hero name slide-up
+            gsap.fromTo('.reveal-hero',
+                { yPercent: 110 },
+                { yPercent: 0, duration: 1.6, stagger: 0.12, ease: 'expo.out', delay: 0.05 }
+            );
+
+            // — Hero tagline lines
+            gsap.fromTo('.hero-tagline .reveal-block-inner',
+                { yPercent: 110 },
+                { yPercent: 0, duration: 1.2, stagger: 0.08, ease: 'expo.out', delay: 0.4 }
+            );
+            gsap.fromTo('.hero-scroll .reveal-block-inner',
+                { yPercent: 110 },
+                { yPercent: 0, duration: 1.2, stagger: 0.1, ease: 'expo.out', delay: 0.65 }
+            );
+
+            // — Scroll-triggered reveals: all .reveal-inner spans
+            document.querySelectorAll('.reveal-inner').forEach(el => {
+                gsap.fromTo(el,
+                    { yPercent: 105 },
+                    {
+                        yPercent: 0,
+                        duration: 1.2,
+                        ease: 'expo.out',
+                        scrollTrigger: {
+                            trigger: el.closest('.reveal-wrap') || el,
+                            start: 'top 92%',
+                            toggleActions: 'play none none reverse'
+                        }
                     }
-                }
-            );
-        });
+                );
+            });
 
-        // — Project rows slide in
-        document.querySelectorAll('.project-row').forEach(row => {
-            gsap.fromTo(row,
-                { opacity: 0, y: 30 },
+            // — Section numbers fade-in
+            document.querySelectorAll('.section-num').forEach((el, i) => {
+                gsap.fromTo(el,
+                    { opacity: 0, x: -12 },
+                    {
+                        opacity: 1, x: 0,
+                        duration: 0.8,
+                        ease: 'power3.out',
+                        scrollTrigger: {
+                            trigger: el,
+                            start: 'top 90%',
+                            toggleActions: 'play none none reverse'
+                        }
+                    }
+                );
+            });
+
+            // — Project rows slide in
+            document.querySelectorAll('.project-row').forEach(row => {
+                gsap.fromTo(row,
+                    { opacity: 0, y: 30 },
+                    {
+                        opacity: 1, y: 0,
+                        duration: 0.9,
+                        ease: 'power3.out',
+                        scrollTrigger: {
+                            trigger: row,
+                            start: 'top 88%',
+                            toggleActions: 'play none none reverse'
+                        }
+                    }
+                );
+            });
+
+            // — Stat blocks stagger
+            gsap.fromTo('.stat-block',
+                { opacity: 0, y: 20 },
                 {
                     opacity: 1, y: 0,
-                    duration: 0.9,
+                    duration: 0.7,
+                    stagger: 0.1,
                     ease: 'power3.out',
                     scrollTrigger: {
-                        trigger: row,
-                        start: 'top 88%',
+                        trigger: '.ctx-stats',
+                        start: 'top 85%',
                         toggleActions: 'play none none reverse'
                     }
                 }
             );
+
+            // — Experience cards stagger
+            gsap.fromTo('.exp-card',
+                { opacity: 0, y: 24 },
+                {
+                    opacity: 1, y: 0,
+                    duration: 0.75,
+                    stagger: 0.15,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: '.exp-cards',
+                        start: 'top 85%',
+                        toggleActions: 'play none none reverse'
+                    }
+                }
+            );
+
+            // — Contact CTA scale
+            gsap.fromTo('.contact-cta',
+                { opacity: 0, y: 40 },
+                {
+                    opacity: 1, y: 0,
+                    duration: 1.0,
+                    ease: 'expo.out',
+                    scrollTrigger: {
+                        trigger: '#contact',
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse'
+                    }
+                }
+            );
+            gsap.fromTo('.contact-wa',
+                { opacity: 0, y: 20 },
+                {
+                    opacity: 1, y: 0,
+                    duration: 0.8,
+                    delay: 0.2,
+                    ease: 'expo.out',
+                    scrollTrigger: {
+                        trigger: '#contact',
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse'
+                    }
+                }
+            );
+
+            // — Subtle parallax on hero grid lines
+            gsap.to('.hero-grid-line', {
+                yPercent: -15,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: '#hero',
+                    start: 'top top',
+                    end: 'bottom top',
+                    scrub: true
+                }
+            });
+        }
+
+        /* ══════════════════════════════════════════════════
+           5. MARQUEE PAUSE ON HOVER
+        ══════════════════════════════════════════════════ */
+        const marqueeTrack = document.getElementById('marqueeTrack');
+        marqueeTrack.parentElement.addEventListener('mouseenter', () => {
+            marqueeTrack.style.animationPlayState = 'paused';
         });
-
-        // — Stat blocks stagger
-        gsap.fromTo('.stat-block',
-            { opacity: 0, y: 20 },
-            {
-                opacity: 1, y: 0,
-                duration: 0.7,
-                stagger: 0.1,
-                ease: 'power3.out',
-                scrollTrigger: {
-                    trigger: '.ctx-stats',
-                    start: 'top 85%',
-                    toggleActions: 'play none none reverse'
-                }
-            }
-        );
-
-        // — Experience cards stagger
-        gsap.fromTo('.exp-card',
-            { opacity: 0, y: 24 },
-            {
-                opacity: 1, y: 0,
-                duration: 0.75,
-                stagger: 0.15,
-                ease: 'power3.out',
-                scrollTrigger: {
-                    trigger: '.exp-cards',
-                    start: 'top 85%',
-                    toggleActions: 'play none none reverse'
-                }
-            }
-        );
-
-        // — Contact CTA scale
-        gsap.fromTo('.contact-cta',
-            { opacity: 0, y: 40 },
-            {
-                opacity: 1, y: 0,
-                duration: 1.0,
-                ease: 'expo.out',
-                scrollTrigger: {
-                    trigger: '#contact',
-                    start: 'top 80%',
-                    toggleActions: 'play none none reverse'
-                }
-            }
-        );
-        gsap.fromTo('.contact-wa',
-            { opacity: 0, y: 20 },
-            {
-                opacity: 1, y: 0,
-                duration: 0.8,
-                delay: 0.2,
-                ease: 'expo.out',
-                scrollTrigger: {
-                    trigger: '#contact',
-                    start: 'top 80%',
-                    toggleActions: 'play none none reverse'
-                }
-            }
-        );
-
-        // — Subtle parallax on hero grid lines
-        gsap.to('.hero-grid-line', {
-            yPercent: -15,
-            ease: 'none',
-            scrollTrigger: {
-                trigger: '#hero',
-                start: 'top top',
-                end: 'bottom top',
-                scrub: true
-            }
+        marqueeTrack.parentElement.addEventListener('mouseleave', () => {
+            marqueeTrack.style.animationPlayState = 'running';
         });
-    }
-
-    /* ══════════════════════════════════════════════════
-       5. MARQUEE PAUSE ON HOVER
-    ══════════════════════════════════════════════════ */
-    const marqueeTrack = document.getElementById('marqueeTrack');
-    marqueeTrack.parentElement.addEventListener('mouseenter', () => {
-        marqueeTrack.style.animationPlayState = 'paused';
-    });
-    marqueeTrack.parentElement.addEventListener('mouseleave', () => {
-        marqueeTrack.style.animationPlayState = 'running';
-    });
 
     </script>
 </body>
+
 </html>
