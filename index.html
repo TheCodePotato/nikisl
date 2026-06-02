@@ -310,9 +310,9 @@
         /* ─── 3D CYLINDER HERO ────────────────────────── */
         .cylinder-perspective {
             position: absolute;
-            top: 50%;
+            top: 46%;
             left: 50%;
-            width: 100vw;
+            width: 100%;
             /* Starts exactly like the CodePen: far away and slightly tilted */
             transform: translate(-50%, -50%) perspective(600px) rotateZ(5deg);
             display: flex;
@@ -360,7 +360,7 @@
         /* ─── TRUE SVG GOOEY MARQUEE ──────────────────── */
         .gooey-section {
             position: relative;
-            width: 100vw;
+            width: 100%;
             left: 50%;
             transform: translateX(-50%);
             height: clamp(120px, 20vw, 250px);
@@ -393,21 +393,24 @@
         /* The liquid walls on the edges for the text to melt into */
         .gooey-edge {
             position: absolute;
-            top: -20%;
-            bottom: -20%;
-            width: 10vw;
+            top: -50%;
+            /* Pulled way up */
+            bottom: -50%;
+            /* Pulled way down */
+            height: 200%;
+            /* Forces it to stretch past the block completely */
+            width: 8vw;
             background: currentColor;
-            /* Inherits black, or orange on hover */
             border-radius: 50%;
             z-index: 5;
         }
 
         .gooey-edge.left {
-            left: -5vw;
+            left: -4vw;
         }
 
         .gooey-edge.right {
-            right: -5vw;
+            right: -4vw;
         }
 
         .gooey-track {
@@ -878,6 +881,16 @@
                 gap: 0.75rem;
             }
 
+            .cylinder-perspective {
+                top: 40%;
+                /* Moves the cylinder up so it doesn't hit the text */
+            }
+
+            .cylinder-box span {
+                font-size: clamp(3rem, 14vw, 5rem);
+                /* Makes the cylinder much larger on phones */
+            }
+
             .nav-status {
                 display: none;
             }
@@ -913,11 +926,14 @@
             }
 
             .hero-bottom {
-                flex-direction: column;
-                align-items: center;
-                margin-top: 2rem;
-                gap: 1.5rem;
+                margin-top: auto;
+                /* Pushes the text block down */
+                padding-bottom: 1rem;
+                position: relative;
+                z-index: 20;
+                /* Keeps it above the cylinder */
             }
+
 
             .hero-tagline {
                 font-size: 9px;
@@ -946,6 +962,16 @@
 
             .contact-copy {
                 margin-top: 3.5rem;
+            }
+
+            .gooey-container {
+                filter: none !important;
+                /* Turns off SVG rendering */
+            }
+
+            .gooey-edge {
+                display: none !important;
+                /* Removes the side curves */
             }
         }
 
