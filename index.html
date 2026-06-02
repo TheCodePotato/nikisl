@@ -290,12 +290,13 @@
             width: 100%;
             min-height: 100vh;
             min-height: 100dvh;
-            /* Dynamic viewport height for stable mobile rendering */
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
             padding: 1.5rem 2.5rem 3rem;
             overflow: hidden;
+            clip-path: inset(0);
+            /* Brutally enforces boundaries on mobile Safari 3D elements */
         }
 
         .hero-grid-line {
@@ -310,11 +311,12 @@
         /* ─── 3D CYLINDER HERO ────────────────────────── */
         .cylinder-perspective {
             position: absolute;
-            top: 46%;
+            top: 55%;
             left: 50%;
             width: 100%;
-            /* Starts exactly like the CodePen: far away and slightly tilted */
-            transform: translate(-50%, -50%) perspective(600px) rotateZ(5deg);
+            transform: translate(-50%, -50%) rotateZ(5deg);
+            perspective: 600px;
+            /* GSAP will animate this down to 10px on scroll */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -327,8 +329,8 @@
         .cylinder-box {
             position: relative;
             transform-style: preserve-3d;
-            animation: spinCylinderIdle 15s linear infinite;
-            /* Constant slow spin */
+            /* This is the animation that was deleted! It makes it spin slowly forever */
+            animation: spinCylinderIdle 20s linear infinite;
         }
 
         .cylinder-box span {
@@ -337,16 +339,17 @@
             left: 50%;
             font-family: 'Syne', sans-serif;
             font-weight: 800;
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-size: clamp(2rem, 7vw, 4rem);
             white-space: nowrap;
             text-transform: uppercase;
             color: white;
             text-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);
             transform-style: preserve-3d;
-            /* translateZ uses em to perfectly scale radius with the font size */
-            transform: translate(-50%, -50%) rotateX(calc(var(--i) * 22.5deg)) translateZ(3.2em);
+            transform: translate(-50%, -50%) rotateX(calc(var(--i) * 22.5deg)) translateZ(3.4em);
+            backface-visibility: visible;
         }
 
+        /* The actual spinning physics */
         @keyframes spinCylinderIdle {
             from {
                 transform: rotateX(0deg);
@@ -360,14 +363,16 @@
         /* ─── TRUE SVG GOOEY MARQUEE ──────────────────── */
         .gooey-section {
             position: relative;
-            width: 100%;
-            left: 50%;
-            transform: translateX(-50%);
+            width: 100vw;
+            /* Perfectly breaks out of padded containers edge-to-edge */
+            margin-left: calc(50% - 50vw);
+            margin-right: calc(50% - 50vw);
             height: clamp(120px, 20vw, 250px);
             background: #ffffff;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
+            /* Fixes vertical clipping of big text */
             overflow: hidden;
             margin-bottom: 3rem;
         }
@@ -551,8 +556,12 @@
         }
 
         .project-main {
-            flex: 1;
+            flex: 1 1 auto;
+            /* Allows it to grow and shrink properly */
             min-width: 0;
+            /* Crucial: lets long text truncate/wrap inside flexbox */
+            padding-right: 2rem;
+            /* Buffer zone between text and date */
         }
 
         .project-title {
@@ -570,8 +579,17 @@
         .project-title span {
             display: block;
             padding-left: 0 !important;
-            white-space: nowrap;
-            /* Prevents text from splitting or wrapping onto a new line */
+            white-space: normal;
+            /* Re-enable wrapping for long translations */
+            word-break: break-word;
+            /* Prevents words from crossing boundaries */
+            overflow-wrap: break-word;
+        }
+
+        .project-meta {
+            text-align: right;
+            flex-shrink: 0;
+            /* Protects the Date and Tags from being squished */
         }
 
         .project-row:hover .project-title {
@@ -882,14 +900,16 @@
             }
 
             .cylinder-perspective {
-                top: 40%;
+                top: 50%;
                 /* Moves the cylinder up so it doesn't hit the text */
             }
 
             .cylinder-box span {
-                font-size: clamp(3rem, 14vw, 5rem);
-                /* Makes the cylinder much larger on phones */
+                /* Reduced from 14vw to 9vw so the 3D cylinder doesn't blow past viewport limits */
+                font-size: clamp(1.8rem, 9vw, 3rem);
+                transform: translate(-50%, -50%) rotateX(calc(var(--i) * 22.5deg)) translateZ(2.8em);
             }
+
 
             .nav-status {
                 display: none;
@@ -925,24 +945,37 @@
                 margin-bottom: 0.25rem;
             }
 
+            /* ─── HERO BOTTOM TEXT ────────────────────────── */
             .hero-bottom {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                align-items: flex-start;
+                /* Forces everything securely to the Left */
+                gap: 1.5rem;
+                /* Space between tagline and scroll text */
                 margin-top: auto;
-                /* Pushes the text block down */
-                padding-bottom: 1rem;
+                /* Pushes it to the absolute bottom of the screen */
                 position: relative;
                 z-index: 20;
-                /* Keeps it above the cylinder */
+
+                /* THIS creates the magical negative overlapping effect */
+                mix-blend-mode: difference;
+                color: white;
+                /* Base color must be white for the negative effect to work */
+                pointer-events: none;
+                /* Prevents the text from blocking your scrolling */
             }
 
-
             .hero-tagline {
-                font-size: 9px;
-                max-width: 100%;
-                text-align: center;
+                text-align: left;
+                max-width: 600px;
+                /* Keeps the tagline neat and readable */
             }
 
             .hero-scroll {
-                text-align: center;
+                text-align: left;
             }
 
             .project-row {
@@ -950,6 +983,11 @@
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 1.5rem;
+            }
+
+            .project-main {
+                padding-right: 0;
+                /* Reset for mobile */
             }
 
             .project-meta {
@@ -1055,9 +1093,17 @@
             /* Para que el texto real quede encima de la cascada */
             .hero-name,
             .hero-bottom {
+                margin-top: auto;
+                padding-bottom: 1rem;
                 position: relative;
-                z-index: 10;
-                text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+                z-index: 20;
+                align-items: flex-start;
+                /* Locks left on mobile */
+            }
+
+            .hero-tagline,
+            .hero-scroll {
+                text-align: left !important;
             }
         }
     </style>
