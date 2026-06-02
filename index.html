@@ -360,77 +360,50 @@
             }
         }
 
-        /* ─── TRUE SVG GOOEY MARQUEE ──────────────────── */
-        .gooey-section {
+        /* ─── SHARP INFINITE MARQUEE ──────────────────── */
+        .marquee-section {
             position: relative;
             width: 100vw;
-            /* Perfectly breaks out of padded containers edge-to-edge */
             margin-left: calc(50% - 50vw);
             margin-right: calc(50% - 50vw);
-            height: clamp(120px, 20vw, 250px);
+            height: clamp(120px, 15vw, 220px);
             background: #ffffff;
             display: flex;
             align-items: center;
-            justify-content: flex-start;
-            /* Fixes vertical clipping of big text */
             overflow: hidden;
             margin-bottom: 3rem;
         }
 
-        .gooey-container {
+        .marquee-container {
             position: absolute;
             width: 100%;
             height: 100%;
             display: flex;
             align-items: center;
-            /* Applies the true SVG liquid physics */
-            filter: url(#true-goo);
             color: #050505;
             text-decoration: none;
             transition: color 0.4s ease;
         }
 
-        /* When hovered, the text AND the liquid excess perfectly turn orange */
-        .gooey-container:hover {
+        /* Hover lights up the crisp letters in your brand accent color */
+        .marquee-container:hover {
             color: var(--accent);
         }
 
-        /* The liquid walls on the edges for the text to melt into */
-        .gooey-edge {
-            position: absolute;
-            top: -50%;
-            /* Pulled way up */
-            bottom: -50%;
-            /* Pulled way down */
-            height: 200%;
-            /* Forces it to stretch past the block completely */
-            width: 8vw;
-            background: currentColor;
-            border-radius: 50%;
-            z-index: 5;
-        }
-
-        .gooey-edge.left {
-            left: -4vw;
-        }
-
-        .gooey-edge.right {
-            right: -4vw;
-        }
-
-        .gooey-track {
+        .marquee-track {
             display: flex;
             align-items: center;
             width: max-content;
-            animation: gooeyScroll 10s linear infinite;
+            animation: marqueeScrollExact 10s linear infinite;
+            /* Smooth seamless loop */
         }
 
-        .gooey-half {
+        .marquee-half {
             display: flex;
             align-items: center;
         }
 
-        .gooey-track span {
+        .marquee-track span {
             font-family: 'Syne', sans-serif;
             font-weight: 800;
             font-size: clamp(3.5rem, 12vw, 12vw);
@@ -439,11 +412,12 @@
             white-space: nowrap;
         }
 
-        .gooey-track .star {
+        .marquee-track .star {
             margin: 0 0.4em;
+            color: var(--accent);
         }
 
-        @keyframes gooeyScroll {
+        @keyframes marqueeScrollExact {
             from {
                 transform: translateX(0);
             }
@@ -452,7 +426,6 @@
                 transform: translateX(-50%);
             }
         }
-
 
         /* ─── CONTEXT ─────────────────────────────────── */
         #context {
@@ -1036,61 +1009,7 @@
 
         /* Solo la mostramos en móviles (pantallas menores a 768px) */
         @media (max-width: 768px) {
-            .mobile-waterfall {
-                display: block;
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                overflow: hidden;
-                pointer-events: none;
-                z-index: 5;
-                opacity: 0.2;
-            }
 
-            .waterfall-track {
-                display: flex;
-                flex-direction: column;
-                animation: waterfallFlow 14s linear infinite;
-                will-change: transform;
-                backface-visibility: hidden;
-                perspective: 1000px;
-            }
-
-            @keyframes waterfallFlow {
-                0% {
-                    transform: translate3d(0, 0, 0);
-                }
-
-                100% {
-                    transform: translate3d(0, -50%, 0);
-                }
-            }
-
-            .waterfall-item {
-                font-family: 'Syne', sans-serif;
-                font-weight: 800;
-                font-size: clamp(2rem, 18vw, 6rem);
-                text-transform: uppercase;
-                color: white;
-                white-space: nowrap;
-                padding: 0.5rem 0;
-                letter-spacing: -0.02em;
-                opacity: 0.7;
-            }
-
-            @keyframes waterfallFlow {
-                0% {
-                    transform: translateY(0%);
-                }
-
-                100% {
-                    transform: translateY(-50%);
-                }
-            }
-
-            /* Para que el texto real quede encima de la cascada */
             .hero-name,
             .hero-bottom {
                 margin-top: auto;
@@ -1332,30 +1251,15 @@
     <section id="contact">
         <p class="contact-num" data-i18n="conn_num">05 // INICIAR CONEXIÓN</p>
         <div class="contact-main">
-            <!-- Gooey Infinite Marquee -->
-            <div class="gooey-section">
-                <!-- Invisible SVG Filter defining the real liquid effect -->
-                <svg style="width:0;height:0;position:absolute;" aria-hidden="true">
-                    <filter id="true-goo">
-                        <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur" />
-                        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -9"
-                            result="goo" />
-                        <feBlend in="SourceGraphic" in2="goo" />
-                    </filter>
-                </svg>
-
-                <!-- The liquid container -->
-                <a href="mailto:nikita.slavy@gmail.com" class="gooey-container magnetic">
-                    <!-- The walls the text melts into -->
-                    <div class="gooey-edge left"></div>
-                    <div class="gooey-edge right"></div>
-
-                    <div class="gooey-track">
-                        <div class="gooey-half">
+            <!-- Clean Infinite Marquee -->
+            <div class="marquee-section">
+                <a href="mailto:nikita.slavy@gmail.com" class="marquee-container magnetic">
+                    <div class="marquee-track">
+                        <div class="marquee-half">
                             <span data-i18n="conn_talk">HABLEMOS</span><span class="star">✦</span>
                             <span data-i18n="conn_talk">HABLEMOS</span><span class="star">✦</span>
                         </div>
-                        <div class="gooey-half">
+                        <div class="marquee-half">
                             <span data-i18n="conn_talk">HABLEMOS</span><span class="star">✦</span>
                             <span data-i18n="conn_talk">HABLEMOS</span><span class="star">✦</span>
                         </div>
@@ -1716,8 +1620,8 @@
                 }
             );
 
-            // — 8. Gooey Contact Scale In
-            gsap.fromTo('.gooey-container',
+            // — 8. Contact Marquee Scale In
+            gsap.fromTo('.marquee-section',
                 { opacity: 0, scale: 0.95, y: 30 },
                 {
                     opacity: 1, scale: 1, y: 0,
