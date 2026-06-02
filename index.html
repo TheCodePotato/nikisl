@@ -133,6 +133,9 @@
             align-items: center;
             justify-content: center;
             transform-origin: top center;
+            padding: 1.5rem;
+            overflow: hidden;
+            /* Prevent scrolling during init */
         }
 
         #preloader .pre-label {
@@ -286,6 +289,8 @@
             position: relative;
             width: 100%;
             min-height: 100vh;
+            min-height: 100dvh;
+            /* Dynamic viewport height for stable mobile rendering */
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
@@ -787,12 +792,32 @@
             margin-bottom: 2rem;
         }
 
+        /* ─── TABLET & RESPONSIVE BREAKPOINT ─────────── */
+        @media (max-width: 1024px) {
+
+            .ctx-grid,
+            .exp-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            #context,
+            #experience {
+                padding: 5rem 2rem;
+            }
+
+            .ctx-stats {
+                margin-top: 3rem;
+                padding-top: 2rem;
+            }
+        }
+
         /* ─── MOBILE ──────────────────────────────────── */
         @media (max-width: 768px) {
             nav#navbar {
-                padding: 1rem 1rem;
+                padding: 1rem 1.5rem;
                 flex-wrap: wrap;
-                gap: 0.5rem;
+                gap: 0.75rem;
             }
 
             .nav-status {
@@ -801,31 +826,56 @@
 
             .lang-switcher {
                 gap: 0.5rem;
+                max-width: 100%;
+                justify-content: flex-start;
             }
 
             #hero {
-                padding: 1.5rem 1rem 2rem;
+                padding: 1.5rem 1.5rem 2rem;
+                min-height: 85vh;
+                min-height: 85dvh;
+                justify-content: center;
+                text-align: center;
+            }
+
+            .hero-name {
+                mix-blend-mode: normal;
+                margin: 0 auto;
+                width: 100%;
+            }
+
+            .hero-name h1 {
+                font-size: clamp(2.5rem, 14vw, 4.5rem) !important;
+                line-height: 0.85;
+                letter-spacing: -0.02em;
+            }
+
+            .hero-name h1:first-child {
+                margin-bottom: 0.25rem;
             }
 
             .hero-bottom {
                 flex-direction: column;
+                align-items: center;
+                margin-top: 2rem;
                 gap: 1.5rem;
-                align-items: flex-start;
+            }
+
+            .hero-tagline {
+                font-size: 9px;
+                max-width: 100%;
+                text-align: center;
             }
 
             .hero-scroll {
-                text-align: left;
-            }
-
-            #context,
-            #experience {
-                padding: 4rem 1rem;
+                text-align: center;
             }
 
             .project-row {
-                padding: 2.5rem 1rem;
+                padding: 3rem 1.5rem;
                 flex-direction: column;
                 align-items: flex-start;
+                gap: 1.5rem;
             }
 
             .project-meta {
@@ -833,18 +883,18 @@
             }
 
             #contact {
-                padding: 4rem 1rem;
+                padding: 5rem 1.5rem;
             }
 
             .contact-copy {
-                margin-top: 3rem;
+                margin-top: 3.5rem;
             }
         }
 
         /* ─── SMALL PHONES ────────────────────────────── */
         @media (max-width: 380px) {
             nav#navbar {
-                padding: 0.8rem 0.75rem;
+                padding: 0.8rem 1rem;
             }
 
             .lang-switcher {
@@ -854,15 +904,6 @@
             .lang-btn {
                 font-size: 9px;
                 letter-spacing: 0.1em;
-            }
-        }
-
-        /* ─── TOUCH DEVICE OVERRIDES ──────────────────── */
-        @media (pointer: coarse) {
-
-            a,
-            button {
-                cursor: pointer;
             }
         }
 
@@ -891,6 +932,18 @@
                 flex-direction: column;
                 animation: waterfallFlow 14s linear infinite;
                 will-change: transform;
+                backface-visibility: hidden;
+                perspective: 1000px;
+            }
+
+            @keyframes waterfallFlow {
+                0% {
+                    transform: translate3d(0, 0, 0);
+                }
+
+                100% {
+                    transform: translate3d(0, -50%, 0);
+                }
             }
 
             .waterfall-item {
@@ -1167,6 +1220,10 @@
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
+        // Optimize ScrollTrigger calculations for mobile viewport changes
+        ScrollTrigger.config({
+            ignoreMobileResize: true
+        });
         /* ══════════════════════════════════════════════════
            0. TRANSLATIONS
         ══════════════════════════════════════════════════ */
