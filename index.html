@@ -308,22 +308,44 @@
         }
 
         .hero-name {
-            position: relative;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            /* Technically centers the container vertically and horizontally */
+            width: 100%;
+            padding: 0 1.5rem;
+            /* Safety padding to prevent screen edge contact */
+            text-align: center;
             z-index: 10;
             mix-blend-mode: difference;
             pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         .hero-name h1 {
             font-family: 'Syne', sans-serif;
             font-weight: 800;
-            /* Tamaño ajustado para que NUNCA se corte: */
-            font-size: clamp(3rem, 11vw, 14vw);
+            font-size: clamp(2.8rem, 9.5vw, 11vw);
+            /* Slightly scaled to maintain massive scale without overflow */
             line-height: 0.9;
             text-transform: uppercase;
             letter-spacing: -0.03em;
             color: white;
             width: 100%;
+            white-space: nowrap;
+            /* Prevents names from splitting across lines */
+        }
+
+        .line-mask {
+            display: inline-block;
+            overflow: hidden;
+            vertical-align: bottom;
+            padding-right: 0.08em;
+            /* Critical slant padding: stops "r/e" display character clipping */
         }
 
         /* Eliminamos el .hero-name h1:last-of-type para quitar la indentación */
@@ -339,13 +361,19 @@
 
             .hero-name {
                 mix-blend-mode: normal;
-                /* evita problemas de contraste en móvil */
-                margin: 0 auto;
+                /* keeps contrast visible on mobile */
+                position: absolute;
+                top: 48%;
+                /* visually balanced vertical centering */
+                left: 50%;
+                transform: translate(-50%, -50%);
                 width: 100%;
+                padding: 0 1rem;
             }
 
             .hero-name h1 {
-                font-size: clamp(2.5rem, 15vw, 5rem) !important;
+                font-size: clamp(2rem, 12vw, 4rem) !important;
+                /* Fluid, non-clipping size configuration */
                 line-height: 0.85;
                 letter-spacing: -0.02em;
             }
@@ -659,7 +687,8 @@
         .contact-cta {
             font-family: 'Syne', sans-serif;
             font-weight: 800;
-            font-size: clamp(2.5rem, 8vw, 10vw);
+            font-size: clamp(1.8rem, 8vw, 10vw);
+            /* Safely downscales on extremely narrow viewports */
             line-height: 0.85;
             text-transform: uppercase;
             letter-spacing: -0.03em;
@@ -667,7 +696,11 @@
             text-decoration: none;
             display: inline-block;
             transition: color 0.25s;
-            word-break: break-word;
+            white-space: nowrap;
+            /* Prevents text from wrapping into two lines */
+            word-break: keep-all;
+            /* Guarantees words won't break mid-string */
+            overflow-wrap: normal;
         }
 
         .contact-cta:hover {
@@ -1025,6 +1058,14 @@
         <!-- Mobile waterfall effect -->
         <div class="mobile-waterfall" aria-hidden="true">
             <div class="waterfall-track">
+                <div class="waterfall-item">NIKITA</div>
+                <div class="waterfall-item">SLAVYNER</div>
+                <div class="waterfall-item">NIKITA</div>
+                <div class="waterfall-item">SLAVYNER</div>
+                <div class="waterfall-item">NIKITA</div>
+                <div class="waterfall-item">SLAVYNER</div>
+                <div class="waterfall-item">NIKITA</div>
+                <div class="waterfall-item">SLAVYNER</div>
                 <div class="waterfall-item">NIKITA</div>
                 <div class="waterfall-item">SLAVYNER</div>
                 <div class="waterfall-item">NIKITA</div>
