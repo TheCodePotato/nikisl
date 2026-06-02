@@ -1033,48 +1033,6 @@
                 text-align: left !important;
             }
         }
-
-        /* ─── STYLE RULES FOR BOX B ──────────────────── */
-        #qr-connect {
-            background: #ffffff;
-            color: #050505;
-            min-height: 100vh;
-            min-height: 100dvh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 2rem 1.5rem;
-            position: relative;
-        }
-
-        .qr-num {
-            font-family: 'Inter', sans-serif;
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 2rem;
-        }
-
-        .qr-main {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            z-index: 10;
-        }
-
-        .qr-copy {
-            margin-top: 5rem;
-            font-family: 'Inter', sans-serif;
-            font-size: 8px;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            color: rgba(5, 5, 5, 0.4);
-        }
     </style>
 </head>
 
@@ -1115,258 +1073,220 @@
             <span data-i18n="nav_loc">LLEIDA, ESPAÑA</span>
         </div>
     </nav>
-    <div id="main-content">
-        <!-- ─── HERO ──────────────────────────────────────── -->
-        <section id="hero">
-            <!-- Decorative vertical grid lines -->
-            <div class="hero-grid-line" style="left:33.33%" aria-hidden="true"></div>
-            <div class="hero-grid-line" style="left:66.66%" aria-hidden="true"></div>
-            <!-- 3D Cylinder Scroll Hero -->
-            <div class="cylinder-perspective" aria-hidden="true">
-                <div class="cylinder-box">
-                    <span style="--i: 1">NIKITA SLAVYNER</span>
-                    <span style="--i: 2">NIKITA SLAVYNER</span>
-                    <span style="--i: 3">NIKITA SLAVYNER</span>
-                    <span style="--i: 4">NIKITA SLAVYNER</span>
-                    <span style="--i: 5">NIKITA SLAVYNER</span>
-                    <span style="--i: 6">NIKITA SLAVYNER</span>
-                    <span style="--i: 7">NIKITA SLAVYNER</span>
-                    <span style="--i: 8">NIKITA SLAVYNER</span>
-                    <span style="--i: 9">NIKITA SLAVYNER</span>
-                    <span style="--i: 10">NIKITA SLAVYNER</span>
-                    <span style="--i: 11">NIKITA SLAVYNER</span>
-                    <span style="--i: 12">NIKITA SLAVYNER</span>
-                    <span style="--i: 13">NIKITA SLAVYNER</span>
-                    <span style="--i: 14">NIKITA SLAVYNER</span>
-                    <span style="--i: 15">NIKITA SLAVYNER</span>
-                    <span style="--i: 16">NIKITA SLAVYNER</span>
-                </div>
-            </div>
 
-            <div class="hero-bottom">
-                <p class="hero-tagline">
-                    <span class="reveal-block"><span class="reveal-block-inner" data-i18n="hero_sub1">INVESTIGADOR IA /
-                            DESARROLLADOR</span></span>
-                    <span class="reveal-block"><span class="reveal-block-inner" data-i18n="hero_sub2">ESPECIALIZADO EN
-                            SISTEMAS LÓGICOS</span></span>
-                    <span class="reveal-block"><span class="reveal-block-inner" data-i18n="hero_sub3">E INTERACCIÓN
-                            HUMANO-COMPUTADORA.</span></span>
-                </p>
-                <div class="hero-scroll">
-                    <span class="reveal-block"><span class="reveal-block-inner" data-i18n="hero_scroll1">DESLIZA PARA
-                            EXPLORAR</span></span>
-                    <span class="reveal-block" style="margin-top:0.5rem;"><span class="reveal-block-inner"
-                            style="font-size:1.4em;">↓</span></span>
-                </div>
-            </div>
-        </section>
-
-        <!-- ─── MARQUEE ───────────────────────────────────── -->
-        <div class="marquee-wrap" aria-hidden="true">
-            <div class="marquee-track" id="marqueeTrack">
-                <!-- items injected by JS for language support -->
+    <!-- ─── HERO ──────────────────────────────────────── -->
+    <section id="hero">
+        <!-- Decorative vertical grid lines -->
+        <div class="hero-grid-line" style="left:33.33%" aria-hidden="true"></div>
+        <div class="hero-grid-line" style="left:66.66%" aria-hidden="true"></div>
+        <!-- 3D Cylinder Scroll Hero -->
+        <div class="cylinder-perspective" aria-hidden="true">
+            <div class="cylinder-box">
+                <span style="--i: 1">NIKITA SLAVYNER</span>
+                <span style="--i: 2">NIKITA SLAVYNER</span>
+                <span style="--i: 3">NIKITA SLAVYNER</span>
+                <span style="--i: 4">NIKITA SLAVYNER</span>
+                <span style="--i: 5">NIKITA SLAVYNER</span>
+                <span style="--i: 6">NIKITA SLAVYNER</span>
+                <span style="--i: 7">NIKITA SLAVYNER</span>
+                <span style="--i: 8">NIKITA SLAVYNER</span>
+                <span style="--i: 9">NIKITA SLAVYNER</span>
+                <span style="--i: 10">NIKITA SLAVYNER</span>
+                <span style="--i: 11">NIKITA SLAVYNER</span>
+                <span style="--i: 12">NIKITA SLAVYNER</span>
+                <span style="--i: 13">NIKITA SLAVYNER</span>
+                <span style="--i: 14">NIKITA SLAVYNER</span>
+                <span style="--i: 15">NIKITA SLAVYNER</span>
+                <span style="--i: 16">NIKITA SLAVYNER</span>
             </div>
         </div>
 
-        <!-- ─── 01 // CONTEXT ─────────────────────────────── -->
-        <section id="context">
-            <div class="ctx-grid">
-                <div>
-                    <p class="section-num" data-i18n="ctx_num">01 // CONTEXTO</p>
-                </div>
-                <div>
-                    <p class="ctx-statement">
-                        <span class="reveal-wrap"><span class="reveal-inner dim" data-i18n="ctx_body1">UN CREADOR
-                                MULTILINGÜE, SOCIABLE Y</span></span>
-                        <br>
-                        <span class="reveal-wrap"><span class="reveal-inner" data-i18n="ctx_body2">ALTAMENTE CURIOSO
-                                ENFOCADO EN</span></span>
-                        <br>
-                        <span class="reveal-wrap"><span class="reveal-inner dim" data-i18n="ctx_body3">INTELIGENCIA
-                                ARTIFICIAL,</span></span>
-                        <br>
-                        <span class="reveal-wrap"><span class="reveal-inner" data-i18n="ctx_body4">SISTEMAS LÓGICOS Y
-                                RESOLUCIÓN DE PROBLEMAS.</span></span>
-                    </p>
+        <div class="hero-bottom">
+            <p class="hero-tagline">
+                <span class="reveal-block"><span class="reveal-block-inner" data-i18n="hero_sub1">INVESTIGADOR IA /
+                        DESARROLLADOR</span></span>
+                <span class="reveal-block"><span class="reveal-block-inner" data-i18n="hero_sub2">ESPECIALIZADO EN
+                        SISTEMAS LÓGICOS</span></span>
+                <span class="reveal-block"><span class="reveal-block-inner" data-i18n="hero_sub3">E INTERACCIÓN
+                        HUMANO-COMPUTADORA.</span></span>
+            </p>
+            <div class="hero-scroll">
+                <span class="reveal-block"><span class="reveal-block-inner" data-i18n="hero_scroll1">DESLIZA PARA
+                        EXPLORAR</span></span>
+                <span class="reveal-block" style="margin-top:0.5rem;"><span class="reveal-block-inner"
+                        style="font-size:1.4em;">↓</span></span>
+            </div>
+        </div>
+    </section>
 
-                    <div class="ctx-stats">
-                        <div class="stat-block">
-                            <p class="stat-label" data-i18n="ctx_l_title">IDIOMAS</p>
-                            <ul>
-                                <li data-i18n="ctx_l_es">ES (Nativo)</li>
-                                <li data-i18n="ctx_l_ca">CA (Nativo)</li>
-                                <li data-i18n="ctx_l_ru">RU (Nativo)</li>
-                                <li data-i18n="ctx_l_en">EN (Avanzado)</li>
-                                <li data-i18n="ctx_l_uk">UK (Avanzado)</li>
-                            </ul>
-                        </div>
-                        <div class="stat-block">
-                            <p class="stat-label" data-i18n="ctx_t_title">ENFOQUE TÉCNICO</p>
-                            <ul>
-                                <li data-i18n="ctx_t_1">Python</li>
-                                <li data-i18n="ctx_t_2">Copilotos IA</li>
-                                <li data-i18n="ctx_t_3">Flujos Lógicos</li>
-                                <li data-i18n="ctx_t_4">Sistemas Web</li>
-                            </ul>
-                        </div>
-                        <div class="stat-block" style="grid-column: span 2;">
-                            <p class="stat-label" data-i18n="ctx_n_title">DESTACADOS</p>
-                            <ul>
-                                <li data-i18n="ctx_n_1">Torneo Mundial Ajedrez (Expo Dubai 2020)</li>
-                                <li data-i18n="ctx_n_2">Representé España entre 53 países</li>
-                                <li data-i18n="ctx_n_3">Esquí Competitivo</li>
-                            </ul>
-                        </div>
+    <!-- ─── MARQUEE ───────────────────────────────────── -->
+    <div class="marquee-wrap" aria-hidden="true">
+        <div class="marquee-track" id="marqueeTrack">
+            <!-- items injected by JS for language support -->
+        </div>
+    </div>
+
+    <!-- ─── 01 // CONTEXT ─────────────────────────────── -->
+    <section id="context">
+        <div class="ctx-grid">
+            <div>
+                <p class="section-num" data-i18n="ctx_num">01 // CONTEXTO</p>
+            </div>
+            <div>
+                <p class="ctx-statement">
+                    <span class="reveal-wrap"><span class="reveal-inner dim" data-i18n="ctx_body1">UN CREADOR
+                            MULTILINGÜE, SOCIABLE Y</span></span>
+                    <br>
+                    <span class="reveal-wrap"><span class="reveal-inner" data-i18n="ctx_body2">ALTAMENTE CURIOSO
+                            ENFOCADO EN</span></span>
+                    <br>
+                    <span class="reveal-wrap"><span class="reveal-inner dim" data-i18n="ctx_body3">INTELIGENCIA
+                            ARTIFICIAL,</span></span>
+                    <br>
+                    <span class="reveal-wrap"><span class="reveal-inner" data-i18n="ctx_body4">SISTEMAS LÓGICOS Y
+                            RESOLUCIÓN DE PROBLEMAS.</span></span>
+                </p>
+
+                <div class="ctx-stats">
+                    <div class="stat-block">
+                        <p class="stat-label" data-i18n="ctx_l_title">IDIOMAS</p>
+                        <ul>
+                            <li data-i18n="ctx_l_es">ES (Nativo)</li>
+                            <li data-i18n="ctx_l_ca">CA (Nativo)</li>
+                            <li data-i18n="ctx_l_ru">RU (Nativo)</li>
+                            <li data-i18n="ctx_l_en">EN (Avanzado)</li>
+                            <li data-i18n="ctx_l_uk">UK (Avanzado)</li>
+                        </ul>
+                    </div>
+                    <div class="stat-block">
+                        <p class="stat-label" data-i18n="ctx_t_title">ENFOQUE TÉCNICO</p>
+                        <ul>
+                            <li data-i18n="ctx_t_1">Python</li>
+                            <li data-i18n="ctx_t_2">Copilotos IA</li>
+                            <li data-i18n="ctx_t_3">Flujos Lógicos</li>
+                            <li data-i18n="ctx_t_4">Sistemas Web</li>
+                        </ul>
+                    </div>
+                    <div class="stat-block" style="grid-column: span 2;">
+                        <p class="stat-label" data-i18n="ctx_n_title">DESTACADOS</p>
+                        <ul>
+                            <li data-i18n="ctx_n_1">Torneo Mundial Ajedrez (Expo Dubai 2020)</li>
+                            <li data-i18n="ctx_n_2">Representé España entre 53 países</li>
+                            <li data-i18n="ctx_n_3">Esquí Competitivo</li>
+                        </ul>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- ─── 02 // RESEARCH PROJECT (TDR) ──────────────── -->
-        <section>
-            <div class="project-row magnetic">
-                <div class="project-main">
-                    <p class="section-num" style="margin-bottom:1.5rem;" data-i18n="proj1_num">02 // PROYECTO DE
-                        INVESTIGACIÓN (TDR)</p>
-                    <div class="project-title">
-                        <span data-i18n="proj1_title1">COPILOTO DE IA</span>
-                        <span data-i18n="proj1_title2">PARA WINDOWS</span>
-                    </div>
-                </div>
-                <div class="project-meta">
-                    <span class="project-year">2026</span>
-                    <span class="project-tags" data-i18n="proj1_tag">Python / LLMs / Automatización</span>
+    <!-- ─── 02 // RESEARCH PROJECT (TDR) ──────────────── -->
+    <section>
+        <div class="project-row magnetic">
+            <div class="project-main">
+                <p class="section-num" style="margin-bottom:1.5rem;" data-i18n="proj1_num">02 // PROYECTO DE
+                    INVESTIGACIÓN (TDR)</p>
+                <div class="project-title">
+                    <span data-i18n="proj1_title1">COPILOTO DE IA</span>
+                    <span data-i18n="proj1_title2">PARA WINDOWS</span>
                 </div>
             </div>
-        </section>
+            <div class="project-meta">
+                <span class="project-year">2026</span>
+                <span class="project-tags" data-i18n="proj1_tag">Python / LLMs / Automatización</span>
+            </div>
+        </div>
+    </section>
 
-        <!-- ─── 03 // COMMERCIAL ──────────────────────────── -->
-        <section>
-            <div class="project-row magnetic">
-                <div class="project-main">
-                    <p class="section-num" style="margin-bottom:1.5rem;" data-i18n="proj2_num">03 // COMERCIAL</p>
-                    <div class="project-title">
-                        <span data-i18n="proj2_title1">PRESENCIA</span>
-                        <span data-i18n="proj2_title2">DIGITAL</span>
-                    </div>
-                </div>
-                <div class="project-meta">
-                    <span class="project-year" data-i18n="proj2_year">ONGOING</span>
-                    <span class="project-tags" data-i18n="proj2_tag">Web / SEO / Interfaces</span>
+    <!-- ─── 03 // COMMERCIAL ──────────────────────────── -->
+    <section>
+        <div class="project-row magnetic">
+            <div class="project-main">
+                <p class="section-num" style="margin-bottom:1.5rem;" data-i18n="proj2_num">03 // COMERCIAL</p>
+                <div class="project-title">
+                    <span data-i18n="proj2_title1">PRESENCIA</span>
+                    <span data-i18n="proj2_title2">DIGITAL</span>
                 </div>
             </div>
-        </section>
+            <div class="project-meta">
+                <span class="project-year" data-i18n="proj2_year">ONGOING</span>
+                <span class="project-tags" data-i18n="proj2_tag">Web / SEO / Interfaces</span>
+            </div>
+        </div>
+    </section>
 
-        <!-- ─── 04 // EXPERIENCE & PHILOSOPHY ────────────── -->
-        <section id="experience">
-            <div class="exp-grid">
-                <div>
-                    <p class="section-num" data-i18n="exp_num">04 // EXPERIENCIA Y FILOSOFÍA</p>
-                </div>
-                <div>
-                    <p class="exp-statement">
-                        <span class="reveal-wrap"><span class="reveal-inner dim" data-i18n="exp_body1">IMPULSADO POR EL
-                                APRENDIZAJE CONTINUO,</span></span>
-                        <br>
-                        <span class="reveal-wrap"><span class="reveal-inner" data-i18n="exp_body2">LA CREACIÓN DE
-                                SISTEMAS
-                                PRÁCTICOS Y</span></span>
-                        <br>
-                        <span class="reveal-wrap"><span class="reveal-inner" data-i18n="exp_body3">EL ENTENDIMIENTO DE
-                                CÓMO
-                                FUNCIONAN LAS COSAS.</span></span>
-                    </p>
+    <!-- ─── 04 // EXPERIENCE & PHILOSOPHY ────────────── -->
+    <section id="experience">
+        <div class="exp-grid">
+            <div>
+                <p class="section-num" data-i18n="exp_num">04 // EXPERIENCIA Y FILOSOFÍA</p>
+            </div>
+            <div>
+                <p class="exp-statement">
+                    <span class="reveal-wrap"><span class="reveal-inner dim" data-i18n="exp_body1">IMPULSADO POR EL
+                            APRENDIZAJE CONTINUO,</span></span>
+                    <br>
+                    <span class="reveal-wrap"><span class="reveal-inner" data-i18n="exp_body2">LA CREACIÓN DE SISTEMAS
+                            PRÁCTICOS Y</span></span>
+                    <br>
+                    <span class="reveal-wrap"><span class="reveal-inner" data-i18n="exp_body3">EL ENTENDIMIENTO DE CÓMO
+                            FUNCIONAN LAS COSAS.</span></span>
+                </p>
 
-                    <div class="exp-cards">
-                        <div class="exp-card">
-                            <p class="exp-card-title" data-i18n="exp_tutor_title">PROFESOR DE INGLÉS</p>
-                            <span class="exp-card-date" data-i18n="exp_tutor_date">JUNIO 2024 - PRESENTE</span>
-                            <p class="exp-card-desc" data-i18n="exp_tutor_desc">ADAPTÁNDOME A DISTINTOS RITMOS DE
-                                APRENDIZAJE CON COMUNICACIÓN Y PACIENCIA.</p>
-                        </div>
-                        <div class="exp-card">
-                            <p class="exp-card-title" data-i18n="exp_val_title">VALORES CLAVE</p>
-                            <span class="exp-card-date" data-i18n="exp_val_sub">FILOSOFÍA DE TRABAJO</span>
-                            <ul>
-                                <li data-i18n="exp_val_1">Curiosidad y Autoaprendizaje</li>
-                                <li data-i18n="exp_val_2">Pensamiento Analítico</li>
-                                <li data-i18n="exp_val_3">Resolución de Problemas</li>
-                                <li data-i18n="exp_val_4">Adaptabilidad</li>
-                            </ul>
-                        </div>
+                <div class="exp-cards">
+                    <div class="exp-card">
+                        <p class="exp-card-title" data-i18n="exp_tutor_title">PROFESOR DE INGLÉS</p>
+                        <span class="exp-card-date" data-i18n="exp_tutor_date">JUNIO 2024 - PRESENTE</span>
+                        <p class="exp-card-desc" data-i18n="exp_tutor_desc">ADAPTÁNDOME A DISTINTOS RITMOS DE
+                            APRENDIZAJE CON COMUNICACIÓN Y PACIENCIA.</p>
+                    </div>
+                    <div class="exp-card">
+                        <p class="exp-card-title" data-i18n="exp_val_title">VALORES CLAVE</p>
+                        <span class="exp-card-date" data-i18n="exp_val_sub">FILOSOFÍA DE TRABAJO</span>
+                        <ul>
+                            <li data-i18n="exp_val_1">Curiosidad y Autoaprendizaje</li>
+                            <li data-i18n="exp_val_2">Pensamiento Analítico</li>
+                            <li data-i18n="exp_val_3">Resolución de Problemas</li>
+                            <li data-i18n="exp_val_4">Adaptabilidad</li>
+                        </ul>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- ─── 05 // INITIATE CONNECTION ─────────────────── -->
-        <section id="contact">
-            <p class="contact-num" data-i18n="conn_num">05 // INICIAR CONEXIÓN</p>
-            <div class="contact-main">
-                <!-- Clean Infinite Marquee -->
-                <div class="marquee-section">
-                    <a href="mailto:nikita.slavy@gmail.com" class="marquee-container magnetic">
-                        <div class="marquee-track">
-                            <div class="marquee-half">
-                                <span data-i18n="conn_talk">HABLEMOS</span><span class="star">✦</span>
-                                <span data-i18n="conn_talk">HABLEMOS</span><span class="star">✦</span>
-                            </div>
-                            <div class="marquee-half">
-                                <span data-i18n="conn_talk">HABLEMOS</span><span class="star">✦</span>
-                                <span data-i18n="conn_talk">HABLEMOS</span><span class="star">✦</span>
-                            </div>
+    <!-- ─── 05 // INITIATE CONNECTION ─────────────────── -->
+    <section id="contact">
+        <p class="contact-num" data-i18n="conn_num">05 // INICIAR CONEXIÓN</p>
+        <div class="contact-main">
+            <!-- Clean Infinite Marquee -->
+            <div class="marquee-section">
+                <a href="mailto:nikita.slavy@gmail.com" class="marquee-container magnetic">
+                    <div class="marquee-track">
+                        <div class="marquee-half">
+                            <span data-i18n="conn_talk">HABLEMOS</span><span class="star">✦</span>
+                            <span data-i18n="conn_talk">HABLEMOS</span><span class="star">✦</span>
                         </div>
-                    </a>
-                </div>
-                <a href="https://wa.me/34693678567" target="_blank" rel="noopener noreferrer"
-                    class="contact-wa magnetic" aria-label="WhatsApp">
-                    <svg class="contact-wa-icon" viewBox="0 0 24 24" fill="currentColor"
-                        xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <path
-                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                    </svg>
-                    <span data-i18n="conn_wa">WHATSAPP ME</span>
+                        <div class="marquee-half">
+                            <span data-i18n="conn_talk">HABLEMOS</span><span class="star">✦</span>
+                            <span data-i18n="conn_talk">HABLEMOS</span><span class="star">✦</span>
+                        </div>
+                    </div>
                 </a>
             </div>
-            <p class="contact-copy" data-i18n="conn_copy">© 2026 NIKITA SLAVYNER. TODOS LOS DERECHOS RESERVADOS.</p>
-        </section>
-    </div>
-    <div id="qr-content" style="display: none;">
-        <section id="qr-connect">
-            <p class="qr-num">CONECTAR // NIKITA SLAVYNER</p>
+            <a href="https://wa.me/34693678567" target="_blank" rel="noopener noreferrer" class="contact-wa magnetic"
+                aria-label="WhatsApp">
+                <svg class="contact-wa-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true">
+                    <path
+                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                </svg>
+                <span data-i18n="conn_wa">WHATSAPP ME</span>
+            </a>
+        </div>
+        <p class="contact-copy" data-i18n="conn_copy">© 2026 NIKITA SLAVYNER. TODOS LOS DERECHOS RESERVADOS.</p>
+    </section>
 
-            <div class="qr-main">
-                <!-- Clean Infinite Marquee -->
-                <div class="marquee-section">
-                    <a href="mailto:nikita.slavy@gmail.com" class="marquee-container magnetic">
-                        <div class="marquee-track">
-                            <div class="marquee-half">
-                                <span>HABLEMOS</span><span class="star">✦</span>
-                                <span>HABLEMOS</span><span class="star">✦</span>
-                            </div>
-                            <div class="marquee-half">
-                                <span>HABLEMOS</span><span class="star">✦</span>
-                                <span>HABLEMOS</span><span class="star">✦</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- WhatsApp Direct Button -->
-                <a href="https://wa.me/34693678567" target="_blank" rel="noopener noreferrer"
-                    class="contact-wa magnetic" aria-label="WhatsApp">
-                    <svg class="contact-wa-icon" viewBox="0 0 24 24" fill="currentColor"
-                        xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <path
-                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                    </svg>
-                    <span>WHATSAPP ME</span>
-                </a>
-            </div>
-
-            <p class="qr-copy">© 2026 NIKITA SLAVYNER.</p>
-        </section>
-    </div>
     <!-- ─── SCRIPTS ────────────────────────────────────── -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -1762,44 +1682,7 @@
         marqueeTrack.parentElement.addEventListener('mouseleave', () => {
             marqueeTrack.style.animationPlayState = 'running';
         });
-        /* ══════════════════════════════════════════════════
-                   CLIENT-SIDE HASH ROUTER FOR GITHUB PAGES
-                ══════════════════════════════════════════════════ */
-        function checkRoute() {
-            const hash = window.location.hash;
 
-            // Check if the URL ends with #/nikisl/connect or #nikisl/connect
-            if (hash === '#/nikisl/connect' || hash === '#nikisl/connect') {
-                // Hide Box A
-                document.getElementById('main-content').style.display = 'none';
-                // Show Box B
-                document.getElementById('qr-content').style.display = 'block';
-
-                document.body.style.overflow = 'auto';
-
-                // Disable GSAP ScrollTriggers
-                if (typeof ScrollTrigger !== 'undefined') {
-                    ScrollTrigger.getAll().forEach(trigger => trigger.disable());
-                }
-            } else {
-                // Default: Show standard portfolio
-                document.getElementById('main-content').style.display = 'block';
-                document.getElementById('qr-content').style.display = 'none';
-
-                // Re-enable GSAP ScrollTriggers
-                if (typeof ScrollTrigger !== 'undefined') {
-                    ScrollTrigger.getAll().forEach(trigger => trigger.enable());
-                    ScrollTrigger.refresh();
-                }
-            }
-        }
-
-        // Listen for browser Back/Forward navigation changes
-        window.addEventListener('hashchange', checkRoute);
-
-        // Run immediately on page load
-        window.addEventListener('DOMContentLoaded', checkRoute);
-        checkRoute();
     </script>
 </body>
 
