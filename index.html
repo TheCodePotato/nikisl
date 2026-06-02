@@ -1763,13 +1763,13 @@
             marqueeTrack.style.animationPlayState = 'running';
         });
         /* ══════════════════════════════════════════════════
-           CLIENT-SIDE SINGLE-PAGE ROUTER
-        ══════════════════════════════════════════════════ */
+                   CLIENT-SIDE HASH ROUTER FOR GITHUB PAGES
+                ══════════════════════════════════════════════════ */
         function checkRoute() {
-            const path = window.location.pathname;
+            const hash = window.location.hash;
 
-            // Check if the URL ends with /nikisl/connect or /nikisl/connect/
-            if (path.endsWith('/nikisl/connect') || path.endsWith('/nikisl/connect/')) {
+            // Check if the URL ends with #/nikisl/connect or #nikisl/connect
+            if (hash === '#/nikisl/connect' || hash === '#nikisl/connect') {
                 // Hide Box A
                 document.getElementById('main-content').style.display = 'none';
                 // Show Box B
@@ -1777,7 +1777,7 @@
 
                 document.body.style.overflow = 'auto';
 
-                // Disable GSAP animations temporarily to save resources
+                // Disable GSAP ScrollTriggers
                 if (typeof ScrollTrigger !== 'undefined') {
                     ScrollTrigger.getAll().forEach(trigger => trigger.disable());
                 }
@@ -1786,7 +1786,7 @@
                 document.getElementById('main-content').style.display = 'block';
                 document.getElementById('qr-content').style.display = 'none';
 
-                // Re-enable GSAP animations
+                // Re-enable GSAP ScrollTriggers
                 if (typeof ScrollTrigger !== 'undefined') {
                     ScrollTrigger.getAll().forEach(trigger => trigger.enable());
                     ScrollTrigger.refresh();
@@ -1795,7 +1795,7 @@
         }
 
         // Listen for browser Back/Forward navigation changes
-        window.addEventListener('popstate', checkRoute);
+        window.addEventListener('hashchange', checkRoute);
 
         // Run immediately on page load
         window.addEventListener('DOMContentLoaded', checkRoute);
