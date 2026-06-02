@@ -312,40 +312,43 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            /* Technically centers the container vertically and horizontally */
             width: 100%;
             padding: 0 1.5rem;
-            /* Safety padding to prevent screen edge contact */
-            text-align: center;
             z-index: 10;
             mix-blend-mode: difference;
             pointer-events: none;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            display: block;
+            text-align: center;
         }
 
         .hero-name h1 {
             font-family: 'Syne', sans-serif;
             font-weight: 800;
-            font-size: clamp(2.8rem, 9.5vw, 11vw);
-            /* Slightly scaled to maintain massive scale without overflow */
+            font-size: clamp(2.5rem, 8.5vw, 9.5vw);
+            /* Optimized fluid sizing to prevent desktop overflow */
             line-height: 0.9;
             text-transform: uppercase;
             letter-spacing: -0.03em;
             color: white;
             width: 100%;
-            white-space: nowrap;
-            /* Prevents names from splitting across lines */
+            text-align: center;
+            display: block;
         }
 
         .line-mask {
-            display: inline-block;
+            display: block;
+            /* Block layout allows 100% viewport width without clipping */
             overflow: hidden;
-            vertical-align: bottom;
-            padding-right: 0.08em;
-            /* Critical slant padding: stops "r/e" display character clipping */
+            width: 100%;
+            text-align: center;
+        }
+
+        .reveal-hero {
+            display: block;
+            /* Matches block structure to keep GSAP transforms aligned */
+            width: 100%;
+            text-align: center;
+            will-change: transform;
         }
 
         /* Eliminamos el .hero-name h1:last-of-type para quitar la indentación */
@@ -509,20 +512,20 @@
         .project-title {
             font-family: 'Syne', sans-serif;
             font-weight: 800;
-            font-size: clamp(2rem, 8vw, 10vw);
-            /* Ajustado un poco para que no se corte en móviles grandes */
+            font-size: clamp(2rem, 5.5vw, 6.5vw);
+            /* Responsive scale matches screen columns on PC */
             line-height: 0.82;
             text-transform: uppercase;
             letter-spacing: -0.03em;
             color: white;
             transition: color 0.3s;
-            word-break: break-word;
         }
 
         .project-title span {
             display: block;
             padding-left: 0 !important;
-            /* Fuerza a que todo esté alineado a la izquierda */
+            white-space: nowrap;
+            /* Prevents text from splitting or wrapping onto a new line */
         }
 
         .project-row:hover .project-title {
