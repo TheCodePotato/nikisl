@@ -421,7 +421,8 @@
 
         .marquee-track .star {
             margin: 0 0.4em;
-            color: var(--accent);
+            color: var(--accent) !important;
+            /* Forces the stars to stay orange on both PC and mobile */
         }
 
         @keyframes marqueeScrollExact {
