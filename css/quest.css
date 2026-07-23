@@ -1,0 +1,877 @@
+/* ==========================================================================
+   DASHA'S SECRET QUEST — STYLESHEET (MOBILE-FIRST REFINED)
+   Theme: Deep Black, Blush Pink, Warm Chocolate Brown
+   ========================================================================== */
+
+/* ─── RESET & CONTAINER ─────────────────────────────────────────────────── */
+#dasha-quest-container {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background:
+        radial-gradient(circle at 50% 12%, rgba(244, 114, 182, 0.13) 0%, rgba(42, 26, 32, 0.42) 30%, transparent 62%),
+        radial-gradient(circle at 12% 78%, rgba(120, 53, 15, 0.35) 0%, transparent 42%),
+        linear-gradient(160deg, #120c0e 0%, #0a0709 56%, #050304 100%);
+    color: #f8fafc;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    touch-action: manipulation;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.45s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: clamp(16px, 4vw, 24px);
+    padding-top: max(20px, env(safe-area-inset-top));
+    padding-bottom: max(32px, env(safe-area-inset-bottom));
+    box-sizing: border-box;
+}
+
+#dasha-quest-container.q-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* Background Animated Canvas */
+#q-bg-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.7;
+}
+
+/* ─── TOP BAR ──────────────────────────────────────────────────────────── */
+.q-header-bar {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 440px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding: 0.5rem 0;
+}
+
+.q-badge-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.85rem;
+    background: rgba(244, 114, 182, 0.11);
+    border: 1px solid rgba(244, 114, 182, 0.3);
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: #fbcfe8;
+    text-transform: uppercase;
+}
+
+.q-badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #f472b6;
+    box-shadow: 0 0 10px #f472b6;
+    animation: qPulseDot 2s infinite ease-in-out;
+}
+
+@keyframes qPulseDot {
+    0%, 100% { opacity: 0.4; transform: scale(0.9); }
+    50% { opacity: 1; transform: scale(1.3); }
+}
+
+.q-header-actions {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.q-close-btn {
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    color: #e2e8f0;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.q-close-btn:active {
+    transform: scale(0.94);
+    background: rgba(255, 255, 255, 0.18);
+}
+
+/* ─── SECTIONS & CARDS ─────────────────────────────────────────────────── */
+.q-content-wrap {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    max-width: 440px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto 0;
+}
+
+.q-section {
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+    transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.q-section.q-active {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.q-card {
+    width: 100%;
+    background: rgba(26, 18, 22, 0.8);
+    border: 1px solid rgba(244, 114, 182, 0.3);
+    border-radius: 28px;
+    padding: clamp(1.5rem, 5vw, 2.2rem) clamp(1.2rem, 4vw, 1.8rem);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55), inset 0 1px 1px rgba(253, 164, 175, 0.18);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.q-card::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 140%;
+    height: 60%;
+    background: radial-gradient(ellipse at center, rgba(244, 114, 182, 0.12) 0%, rgba(255, 255, 255, 0) 70%);
+    pointer-events: none;
+}
+
+/* Icon Badges */
+.q-icon-badge {
+    width: 64px;
+    height: 64px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(244, 114, 182, 0.18) 0%, rgba(120, 53, 15, 0.22) 100%);
+    border: 1px solid rgba(244, 114, 182, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    margin-bottom: 1.25rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+.q-title {
+    font-family: 'Syne', 'Inter', sans-serif;
+    font-size: clamp(1.4rem, 5vw, 1.8rem);
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 0.6rem;
+    background: linear-gradient(135deg, #ffffff 18%, #fbcfe8 54%, #fda4af 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.02em;
+}
+
+.q-subtitle {
+    font-size: clamp(0.85rem, 3.5vw, 0.95rem);
+    line-height: 1.55;
+    color: #c8a8b0;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+}
+
+.q-subtitle strong {
+    color: #f1f5f9;
+    font-weight: 600;
+}
+
+/* ─── BUTTONS & INPUTS ─────────────────────────────────────────────────── */
+.q-btn {
+    width: 100%;
+    min-height: 52px;
+    padding: 0.9rem 1.6rem;
+    border-radius: 18px;
+    border: none;
+    background: linear-gradient(135deg, #f472b6 0%, #e11d48 100%);
+    color: #fff7fb;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    box-shadow: 0 10px 28px rgba(244, 114, 182, 0.34), inset 0 1px 1px rgba(255, 255, 255, 0.34);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    margin-top: 1rem;
+}
+
+.q-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 34px rgba(244, 114, 182, 0.46);
+}
+
+.q-btn:active {
+    transform: translateY(1px) scale(0.97);
+    box-shadow: 0 5px 14px rgba(244, 114, 182, 0.24);
+}
+
+.q-input-wrap {
+    width: 100%;
+    margin-bottom: 0.5rem;
+    position: relative;
+}
+
+.q-input {
+    width: 100%;
+    height: 52px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    padding: 0 1.2rem;
+    font-family: inherit;
+    font-size: 16px;
+    color: #ffffff;
+    text-align: center;
+    outline: none;
+    box-sizing: border-box;
+    transition: all 0.25s ease;
+}
+
+.q-input:focus {
+    border-color: #f472b6;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 18px rgba(244, 114, 182, 0.28);
+}
+
+.q-input::placeholder {
+    color: #64748b;
+}
+
+.q-feedback-msg {
+    min-height: 24px;
+    font-size: 13px;
+    margin-top: 0.6rem;
+    color: #fbcfe8;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.q-shake {
+    animation: qShake 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes qShake {
+    10%, 90% { transform: translate3d(-2px, 0, 0); }
+    20%, 80% { transform: translate3d(4px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+    40%, 60% { transform: translate3d(6px, 0, 0); }
+}
+
+/* ─── STEP 1: SCANNER ──────────────────────────────────────────────────── */
+.q-scanner-box {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 1rem auto 1.5rem;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(244, 114, 182, 0.14) 0%, rgba(42, 26, 32, 0) 70%);
+    border: 2px dashed rgba(244, 114, 182, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.q-scanner-avatar { font-size: 48px; line-height: 1; }
+
+.q-scanner-line {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: linear-gradient(90deg, transparent 0%, #f472b6 50%, transparent 100%);
+    box-shadow: 0 0 14px #f472b6;
+    animation: qScanLine 2s ease-in-out infinite alternate;
+}
+
+@keyframes qScanLine {
+    0% { top: 5%; opacity: 0.3; }
+    50% { opacity: 1; }
+    100% { top: 92%; opacity: 0.3; }
+}
+
+.q-progress-bar-wrap {
+    width: 100%; height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 100px;
+    overflow: hidden;
+    margin: 1rem 0 0.8rem;
+}
+
+.q-progress-bar-fill {
+    width: 0%; height: 100%;
+    background: linear-gradient(90deg, #f472b6 0%, #b45309 100%);
+    border-radius: 100px;
+    transition: width 0.3s linear;
+}
+
+.q-scan-status-text {
+    font-family: ui-monospace, SFMono-Regular, monospace;
+    font-size: 11px;
+    color: #fbcfe8;
+    letter-spacing: 0.05em;
+    min-height: 20px;
+}
+
+/* ─── STEP 2: MEMORY CHECK (QUIZ) ─────────────────────────────────────── */
+.q-quiz-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin: 1rem 0;
+}
+
+.q-quiz-opt {
+    width: 100%;
+    padding: 1rem 1.2rem;
+    background: rgba(34, 22, 26, 0.62);
+    border: 1px solid rgba(244, 114, 182, 0.18);
+    border-radius: 16px;
+    color: #f8e7ec;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: left;
+    line-height: 1.4;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    transition: all 0.25s ease;
+    box-sizing: border-box;
+}
+
+.q-quiz-opt:active { transform: scale(0.98); }
+
+.q-quiz-opt.q-selected-correct {
+    background: rgba(244, 114, 182, 0.18);
+    border-color: rgba(244, 114, 182, 0.62);
+    color: #fbcfe8;
+    box-shadow: 0 0 18px rgba(244, 114, 182, 0.28);
+}
+
+.q-quiz-opt.q-selected-wrong {
+    background: rgba(120, 53, 15, 0.28);
+    border-color: rgba(180, 83, 9, 0.62);
+    color: #fdba74;
+}
+
+.q-quiz-bullet {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    border: 1px solid rgba(244, 114, 182, 0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; flex-shrink: 0;
+}
+
+.q-quiz-opt.q-selected-correct .q-quiz-bullet {
+    background: #f472b6; border-color: #f472b6; color: #120c0e;
+}
+
+/* ─── STEP 3: STAR CHALLENGE ───────────────────────────────────────────── */
+.q-star-game-area {
+    position: relative;
+    width: 100%; height: 240px;
+    background: radial-gradient(circle at 50% 45%, rgba(68, 34, 42, 0.8) 0%, #0a0709 100%);
+    border-radius: 20px;
+    border: 1px solid rgba(244, 114, 182, 0.16);
+    margin: 1rem 0;
+    overflow: hidden;
+    touch-action: none;
+}
+
+.q-star-target {
+    position: absolute;
+    width: 54px; height: 54px;
+    margin-left: -27px; margin-top: -27px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px; cursor: pointer; z-index: 20;
+    animation: qStarGlow 1.2s infinite alternate ease-in-out;
+}
+
+@keyframes qStarGlow {
+    0% { transform: scale(0.9); filter: drop-shadow(0 0 6px rgba(244, 114, 182, 0.62)); }
+    100% { transform: scale(1.25); filter: drop-shadow(0 0 20px rgba(244, 114, 182, 1)); }
+}
+
+.q-star-round-dots {
+    display: flex; gap: 0.5rem; justify-content: center; margin-top: 0.5rem;
+}
+
+.q-round-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.q-round-dot.q-done {
+    background: #f472b6; box-shadow: 0 0 12px #f472b6;
+}
+
+/* ─── STEP 4: MANDATORY ENVELOPES & APPROVAL ────────────────────────────── */
+.q-envelopes-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    margin: 1.25rem 0;
+}
+
+.q-envelope {
+    position: relative;
+    aspect-ratio: 0.85;
+    background: linear-gradient(145deg, rgba(64, 38, 44, 0.75) 0%, rgba(18, 12, 14, 0.85) 100%);
+    border: 1px solid rgba(244, 114, 182, 0.3);
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.q-envelope:active { transform: scale(0.92); }
+
+.q-envelope.q-opened {
+    background: rgba(244, 114, 182, 0.16);
+    border-color: #f472b6;
+    box-shadow: 0 0 24px rgba(244, 114, 182, 0.32);
+}
+
+.q-stamp-container {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 30;
+}
+
+.q-stamp {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.2rem, 8vw, 3rem);
+    font-weight: 800;
+    color: #fda4af;
+    border: 4px solid #f43f5e;
+    padding: 0.4rem 1.2rem;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transform: rotate(-12deg) scale(3);
+    opacity: 0;
+    box-shadow: 0 0 30px rgba(244, 63, 94, 0.5);
+}
+
+.q-stamp.q-stamp-animate {
+    animation: qStampDown 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes qStampDown {
+    0% { transform: rotate(-12deg) scale(3); opacity: 0; }
+    100% { transform: rotate(-12deg) scale(1); opacity: 1; }
+}
+
+/* ─── FINAL STEP: PRINTER & CERTIFICATE & TICKETS ──────────────────────── */
+.q-cert-section {
+    max-width: 480px;
+    width: 100%;
+}
+
+/* Printer Slot Housing Header */
+.q-printer-slot {
+    width: 100%;
+    height: 32px;
+    background: linear-gradient(180deg, #0a0709 0%, #2a1a20 100%);
+    border: 1px solid rgba(244, 114, 182, 0.25);
+    border-radius: 14px 14px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+    position: relative;
+    z-index: 25;
+    box-sizing: border-box;
+}
+
+.q-printer-slot-light {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #f472b6;
+    box-shadow: 0 0 10px #f472b6;
+    animation: qPulseDot 1.5s infinite;
+}
+
+.q-printer-slot-label {
+    font-family: ui-monospace, SFMono-Regular, monospace;
+    font-size: 10px;
+    color: #c8a8b0;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+/* Printable Certificate Paper */
+.q-cert-paper {
+    width: 100%;
+    background: linear-gradient(145deg, #fff8e7 0%, #f4e6cf 100%);
+    color: #2a1712;
+    border-radius: 0 0 24px 24px;
+    padding: clamp(1.5rem, 5vw, 2.2rem);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), inset 0 0 0 2px #8c533e, inset 0 0 0 6px #fff8e7;
+    box-sizing: border-box;
+    text-align: center;
+    position: relative;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    transform-origin: top center;
+    animation: qPrinterFeed 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes qPrinterFeed {
+    0% {
+        transform: translateY(-60px) scaleY(0.08);
+        opacity: 0;
+    }
+    40% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(0) scaleY(1);
+        opacity: 1;
+    }
+}
+
+.q-cert-watermark {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-25deg);
+    font-family: 'Syne', sans-serif;
+    font-size: 3.8rem;
+    font-weight: 900;
+    color: rgba(120, 53, 15, 0.07);
+    letter-spacing: 0.2em;
+    pointer-events: none;
+    user-select: none;
+}
+
+.q-cert-header {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #78350f;
+    margin-bottom: 0.4rem;
+}
+
+.q-cert-title {
+    font-family: 'Syne', Georgia, serif;
+    font-size: clamp(1.4rem, 5vw, 1.8rem);
+    font-weight: 800;
+    color: #2a1712;
+    line-height: 1.2;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.02em;
+}
+
+.q-cert-recipient {
+    font-family: 'Syne', Georgia, serif;
+    font-size: clamp(1.6rem, 6vw, 2.2rem);
+    font-weight: 800;
+    color: #be185d;
+    margin: 0.5rem 0 1rem;
+    border-bottom: 2px dashed rgba(140, 83, 62, 0.42);
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
+
+.q-cert-list {
+    text-align: left;
+    margin: 1.2rem 0;
+    font-size: 13px;
+    line-height: 1.7;
+    color: #3f241b;
+}
+
+.q-cert-list-item {
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+}
+
+.q-cert-check {
+    color: #be185d;
+    font-weight: 800;
+}
+
+.q-cert-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(140, 83, 62, 0.24);
+    font-size: 12px;
+}
+
+.q-cert-seal {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fbcfe8 0%, #f472b6 62%, #be185d 100%);
+    border: 2px solid #fff1f2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    box-shadow: 0 5px 16px rgba(190, 24, 93, 0.38);
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    transition: transform 0.2s ease;
+}
+
+.q-cert-seal:active { transform: scale(0.9); }
+
+.q-cert-sign-block { text-align: right; }
+.q-cert-sign-title { font-size: 10px; color: #8c533e; text-transform: uppercase; letter-spacing: 0.1em; }
+.q-cert-sign-name { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: #2a1712; }
+
+/* Authentic Film Ticket Voucher */
+.q-film-ticket {
+    width: 100%;
+    background: linear-gradient(135deg, #14090c 0%, #3a1720 48%, #78350f 100%);
+    border: 1px solid rgba(244, 114, 182, 0.35);
+    border-radius: 20px;
+    position: relative;
+    display: flex;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.q-ticket-notch-top, .q-ticket-notch-bottom {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    background: #0a0709;
+    border-radius: 50%;
+    z-index: 10;
+}
+
+.q-ticket-notch-top { top: -11px; right: 28%; }
+.q-ticket-notch-bottom { bottom: -11px; right: 28%; }
+
+.q-ticket-main {
+    flex: 1;
+    padding: 1.25rem 1.1rem;
+    text-align: left;
+    border-right: 2px dashed rgba(244, 114, 182, 0.34);
+}
+
+.q-ticket-top-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: #fda4af;
+    margin-bottom: 0.6rem;
+}
+
+.q-ticket-movie-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: #fbcfe8;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+}
+
+.q-ticket-sub-movie {
+    font-size: 11px;
+    color: #ead5d9;
+    margin-bottom: 1rem;
+}
+
+.q-ticket-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+}
+
+.q-ticket-info-cell {
+    display: flex;
+    flex-direction: column;
+}
+
+.q-ticket-lbl {
+    font-size: 9px;
+    font-weight: 700;
+    color: #fda4af;
+    letter-spacing: 0.1em;
+}
+
+.q-ticket-val {
+    font-size: 11px;
+    font-weight: 700;
+    color: #fff7fb;
+}
+
+.q-ticket-stub {
+    width: 28%;
+    background: rgba(0, 0, 0, 0.25);
+    padding: 1rem 0.6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.q-stub-label {
+    font-size: 9px;
+    font-weight: 800;
+    color: #fbcfe8;
+    letter-spacing: 0.18em;
+    margin-bottom: 0.4rem;
+}
+
+.q-barcode-svg {
+    width: 100%;
+    height: 36px;
+    margin: 0.3rem 0;
+}
+
+.q-stub-code {
+    font-family: monospace;
+    font-size: 9px;
+    color: #d6b9bf;
+    letter-spacing: 0.08em;
+}
+
+/* Telegram Gift Button */
+.q-tg-gift-btn {
+    width: 100%;
+    min-height: 56px;
+    background: linear-gradient(135deg, #f472b6 0%, #e11d48 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 18px;
+    font-size: 16px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    text-decoration: none;
+    box-shadow: 0 12px 34px rgba(244, 114, 182, 0.38);
+    transition: all 0.25s ease;
+    box-sizing: border-box;
+    margin-bottom: 1.5rem;
+}
+
+.q-tg-gift-btn:active { transform: scale(0.97); }
+
+/* Typewriter Box */
+.q-typewriter-box {
+    width: 100%;
+    background: rgba(26, 18, 22, 0.74);
+    border: 1px solid rgba(244, 114, 182, 0.2);
+    border-radius: 20px;
+    padding: 1.2rem;
+    font-size: 14px;
+    line-height: 1.65;
+    color: #ead5d9;
+    text-align: left;
+    box-sizing: border-box;
+    margin-top: 0.5rem;
+    min-height: 90px;
+}
+
+/* Toast Popup */
+.q-toast {
+    position: fixed;
+    bottom: max(24px, env(safe-area-inset-bottom));
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: rgba(26, 18, 22, 0.94);
+    border: 1px solid rgba(244, 114, 182, 0.42);
+    color: #fbcfe8;
+    padding: 0.75rem 1.4rem;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 600;
+    z-index: 100005;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    white-space: nowrap;
+}
+
+.q-toast.q-toast-show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}

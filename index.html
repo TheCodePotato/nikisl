@@ -29,6 +29,8 @@
         }
     </script>
 
+    <link rel="stylesheet" href="css/quest.css">
+
     <style>
         *,
         *::before,
@@ -1684,6 +1686,245 @@
         });
 
     </script>
+
+    <!-- ─── DASHA'S SECRET QUEST OVERLAY ───────────────────────────── -->
+    <div id="dasha-quest-container">
+        <!-- Particle Star Canvas Background -->
+        <canvas id="q-bg-canvas"></canvas>
+
+        <!-- Top Header Bar -->
+        <div class="q-header-bar">
+            <div class="q-badge-tag">
+                <span class="q-badge-dot"></span>
+                <span>Программа Извинения</span>
+            </div>
+            <div class="q-header-actions">
+                <button class="q-close-btn" type="button" aria-label="Закрыть">✕</button>
+            </div>
+        </div>
+
+        <div class="q-content-wrap">
+            <!-- ─── STEP 0: LOGIN (#login) ─────────────────────────── -->
+            <section id="q-sec-login" class="q-section">
+                <div class="q-card" id="q-login-card">
+                    <div class="q-icon-badge">🔒</div>
+                    <h2 class="q-title">Ограниченный доступ</h2>
+                    <p class="q-subtitle">Доступ разрешён только для одного очень особенного человека. Введи пароль 💛
+                    </p>
+
+                    <div class="q-input-wrap">
+                        <input type="password" id="q-password-input" class="q-input"
+                            placeholder="Введи секретное слово..." autocomplete="off">
+                    </div>
+
+                    <button type="button" id="q-login-btn" class="q-btn">Открыть доступ →</button>
+                    <div id="q-login-feedback" class="q-feedback-msg"></div>
+                </div>
+            </section>
+
+            <!-- ─── STEP 1: IDENTITY SCANNER (#intro) ──────────────── -->
+            <section id="q-sec-intro" class="q-section">
+                <div class="q-card">
+                    <div class="q-badge-tag" style="margin-bottom: 1rem;">Шаг 1 из 4</div>
+                    <h2 class="q-title">Проверка Личности</h2>
+                    <p class="q-subtitle">Система проводит обязательное биометрическое сканирование на уровень милоты
+                    </p>
+
+                    <div class="q-scanner-box">
+                        <div class="q-scanner-avatar">👑</div>
+                        <div class="q-scanner-line"></div>
+                    </div>
+
+                    <div class="q-progress-bar-wrap">
+                        <div id="q-scan-bar-fill" class="q-progress-bar-fill"></div>
+                    </div>
+
+                    <div id="q-scan-status-text" class="q-scan-status-text">Инициализация биометрии...</div>
+
+                    <button type="button" id="q-scan-continue-btn" class="q-btn"
+                        style="display:none; margin-top: 1.5rem;">Начать миссию →</button>
+                </div>
+            </section>
+
+            <!-- ─── STEP 2: MEMORY QUIZ (#memory) ─────────────────── -->
+            <section id="q-sec-memory" class="q-section">
+                <div class="q-card">
+                    <div class="q-badge-tag" style="margin-bottom: 1rem;">Шаг 2 из 4</div>
+                    <h2 class="q-title">Проверка Памяти</h2>
+                    <p class="q-subtitle">Официальный запрос: Почему Никита не смог посмотреть с тобой <strong>La La
+                            Land</strong>?</p>
+
+                    <div id="q-quiz-options-wrap" class="q-quiz-list"></div>
+                    <div id="q-quiz-feedback" class="q-feedback-msg"></div>
+
+                    <button type="button" id="q-quiz-continue-btn" class="q-btn"
+                        style="display:none; margin-top: 1rem;">Следующий этап →</button>
+                </div>
+            </section>
+
+            <!-- ─── STEP 3: STAR CHALLENGE (#reflex) ──────────────── -->
+            <section id="q-sec-reflex" class="q-section">
+                <div class="q-card">
+                    <div class="q-badge-tag" style="margin-bottom: 1rem;">Шаг 3 из 4</div>
+                    <h2 class="q-title">Ловец Звёзд</h2>
+                    <p id="q-star-hint" class="q-subtitle">Поймай 3 сияющие золотые звезды на ночном небе</p>
+
+                    <div id="q-star-game-area" class="q-star-game-area"></div>
+
+                    <div class="q-star-round-dots">
+                        <div class="q-round-dot"></div>
+                        <div class="q-round-dot"></div>
+                        <div class="q-round-dot"></div>
+                    </div>
+
+                    <button type="button" id="q-star-continue-btn" class="q-btn"
+                        style="display:none; margin-top: 1.25rem;">Перейти к компенсации →</button>
+                </div>
+            </section>
+
+            <!-- ─── STEP 4: COMPENSATION APPROVAL (#approval) ───────── -->
+            <section id="q-sec-approval" class="q-section">
+                <div class="q-card">
+                    <div class="q-badge-tag" style="margin-bottom: 1rem;">Шаг 4 из 4</div>
+                    <h2 class="q-title">Условия Компенсации</h2>
+                    <p class="q-subtitle">Открой и изучи <strong>все 3 секретных конверта</strong>, чтобы разблокировать
+                        официальное печать-утверждение!</p>
+
+                    <div id="q-envelopes-grid" class="q-envelopes-grid"></div>
+                    <div id="q-approval-feedback" class="q-feedback-msg">Прогресс: 0 из 3 изучено</div>
+
+                    <button type="button" id="q-approval-continue-btn" class="q-btn"
+                        style="display:none; margin-top: 1rem;">Получить Сертификат →</button>
+                </div>
+            </section>
+
+            <!-- ─── FINAL STEP: CERTIFICATE & GIFTS (#certificate) ──── -->
+            <section id="q-sec-certificate" class="q-section q-cert-section">
+                <!-- Printer Feed Slot Housing -->
+                <div class="q-printer-slot">
+                    <div class="q-printer-slot-light"></div>
+                    <span class="q-printer-slot-label">ПРИНТЕР ВЫДАЧИ ДОКУМЕНТОВ</span>
+                </div>
+
+                <!-- Animated Certificate Card -->
+                <div id="q-cert-paper" class="q-cert-paper">
+                    <div class="q-cert-watermark">ОФИЦИАЛЬНО</div>
+                    <div class="q-cert-header">ГОСУДАРСТВЕННЫЙ РЕЕСТР ИЗВИНЕНИЙ</div>
+                    <h2 class="q-cert-title">СЕРТИФИКАТ ИЗВИНЕНИЯ</h2>
+                    <p style="font-size:12px; color:#64748b; margin-bottom:0.4rem;">Настоящий сертификат торжественно
+                        вручается</p>
+                    <div class="q-cert-recipient">Дашеньке</div>
+
+                    <div class="q-cert-list">
+                        <div class="q-cert-list-item">
+                            <span class="q-cert-check">✓</span>
+                            <span>Признание полной вины за несостоявшийся просмотр La La Land</span>
+                        </div>
+                        <div class="q-cert-list-item">
+                            <span class="q-cert-check">✓</span>
+                            <span>Официальный подарок в Telegram</span>
+                        </div>
+                        <div class="q-cert-list-item">
+                            <span class="q-cert-check">✓</span>
+                            <span>VIP-ваучер на совместный просмотр любого фильма</span>
+                        </div>
+                        <div class="q-cert-list-item">
+                            <span class="q-cert-check">✓</span>
+                            <span>Пожизненное право дразнить Никиту за то, что он уснул</span>
+                        </div>
+                    </div>
+
+                    <div class="q-cert-footer">
+                        <div id="q-cert-seal" class="q-cert-seal" title="Нажми 5 раз">🎖️</div>
+                        <div class="q-cert-sign-block">
+                            <div class="q-cert-sign-title">Дата & Подпись</div>
+                            <div id="q-cert-date" style="font-size:11px; color:#64748b; font-weight:600;">23 июля 2026
+                                г.</div>
+                            <div class="q-cert-sign-name">Никита</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Realistic Cinema Ticket Voucher -->
+                <div class="q-film-ticket">
+                    <div class="q-ticket-notch-top"></div>
+                    <div class="q-ticket-notch-bottom"></div>
+
+                    <div class="q-ticket-main">
+                        <div class="q-ticket-top-row">
+                            <span class="q-ticket-cinema-brand">🎞️ CINEMA VIP PASS</span>
+                            <span class="q-ticket-no">№ 0001 / UNLIMITED</span>
+                        </div>
+
+                        <div class="q-ticket-movie-title">LA LA LAND</div>
+                        <div class="q-ticket-sub-movie">(или любой другой фильм на твой выбор)</div>
+
+                        <div class="q-ticket-info-grid">
+                            <div class="q-ticket-info-cell">
+                                <span class="q-ticket-lbl">СТАТУС</span>
+                                <span class="q-ticket-val">НЕИСПОЛЬЗОВАННЫЙ</span>
+                            </div>
+                            <div class="q-ticket-info-cell">
+                                <span class="q-ticket-lbl">СМЫСЛ</span>
+                                <span class="q-ticket-val">Этот билет не для кино. Он для обещания, которое всё ещё ждёт
+                                    своего вечера.</span>
+                            </div>
+                            <div class="q-ticket-info-cell">
+                                <span class="q-ticket-lbl">ДЕЙСТВУЕТ ДО</span>
+                                <span class="q-ticket-val">БЕСКОНЕЧНОСТЬ</span>
+                            </div>
+                            <div class="q-ticket-info-cell">
+                                <span class="q-ticket-lbl">УСЛОВИЕ</span>
+                                <span class="q-ticket-val">НИКИТА НЕ СПИТ</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="q-ticket-stub">
+                        <div class="q-stub-label">ADMIT ONE</div>
+                        <!-- SVG Barcode -->
+                        <svg class="q-barcode-svg" viewBox="0 0 100 40" preserveAspectRatio="none">
+                            <rect x="0" y="0" width="3" height="40" fill="#f8fafc" />
+                            <rect x="5" y="0" width="2" height="40" fill="#f8fafc" />
+                            <rect x="9" y="0" width="4" height="40" fill="#f8fafc" />
+                            <rect x="15" y="0" width="1" height="40" fill="#f8fafc" />
+                            <rect x="18" y="0" width="5" height="40" fill="#f8fafc" />
+                            <rect x="25" y="0" width="2" height="40" fill="#f8fafc" />
+                            <rect x="29" y="0" width="3" height="40" fill="#f8fafc" />
+                            <rect x="34" y="0" width="1" height="40" fill="#f8fafc" />
+                            <rect x="37" y="0" width="6" height="40" fill="#f8fafc" />
+                            <rect x="45" y="0" width="2" height="40" fill="#f8fafc" />
+                            <rect x="49" y="0" width="4" height="40" fill="#f8fafc" />
+                            <rect x="55" y="0" width="1" height="40" fill="#f8fafc" />
+                            <rect x="58" y="0" width="3" height="40" fill="#f8fafc" />
+                            <rect x="63" y="0" width="5" height="40" fill="#f8fafc" />
+                            <rect x="70" y="0" width="2" height="40" fill="#f8fafc" />
+                            <rect x="74" y="0" width="3" height="40" fill="#f8fafc" />
+                            <rect x="79" y="0" width="1" height="40" fill="#f8fafc" />
+                            <rect x="82" y="0" width="4" height="40" fill="#f8fafc" />
+                            <rect x="88" y="0" width="2" height="40" fill="#f8fafc" />
+                            <rect x="92" y="0" width="5" height="40" fill="#f8fafc" />
+                        </svg>
+                        <div class="q-stub-code">DASHA-2026</div>
+                    </div>
+                </div>
+
+                <!-- Telegram Gift Button -->
+                <a id="q-tg-gift-btn" href="https://t.me/" target="_blank" rel="noopener noreferrer"
+                    class="q-tg-gift-btn">
+                    <span>🎁 Получить подарок в Telegram</span>
+                </a>
+
+                <!-- Typewriter Apology Note -->
+                <div id="q-typewriter-box" class="q-typewriter-box"></div>
+            </section>
+        </div>
+
+        <!-- Toast Floating Banner -->
+        <div id="q-toast" class="q-toast"></div>
+    </div>
+
+    <script src="js/quest.js"></script>
 </body>
 
 </html>
