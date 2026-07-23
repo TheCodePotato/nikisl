@@ -25,7 +25,7 @@
         ],
 
         // Telegram Gift
-        TELEGRAM_GIFT_URL: "https://t.me/",
+        TELEGRAM_GIFT_URL: "https://t.me/niekit",
 
         // Wrong password messages
         WRONG_PASSWORD_MESSAGES: [
