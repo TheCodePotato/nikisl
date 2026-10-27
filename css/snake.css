@@ -1,0 +1,360 @@
+/* ==========================================================================
+   NIKITA SLAVYNER — TERMINAL SNAKE ARCADE (EASTER EGG)
+   Design System: Deep Black (#050505), Neon Orange (#ff4500), Carbon Borders (#1a1a1a)
+   ========================================================================== */
+
+#snake-arcade-container {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: rgba(5, 5, 5, 0.94);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    color: #ffffff;
+    font-family: 'Inter', -apple-system, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(16px, 3vw, 28px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease;
+    box-sizing: border-box;
+}
+
+#snake-arcade-container.arcade-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* Background grid ambient */
+.snake-bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image: 
+        linear-gradient(rgba(255, 69, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 69, 0, 0.03) 1px, transparent 1px);
+    background-size: 32px 32px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Modal Cabinet Frame */
+.snake-cabinet {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 440px;
+    background: #090909;
+    border: 1px solid #1f1f1f;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 69, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Cabinet Top Bar */
+.snake-top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    border-bottom: 1px solid #1a1a1a;
+    background: #0d0d0d;
+}
+
+.snake-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+    color: #a0a0a0;
+    text-transform: uppercase;
+}
+
+.snake-status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #ff4500;
+    box-shadow: 0 0 8px #ff4500;
+    animation: snakePulse 1.8s infinite ease-in-out;
+}
+
+@keyframes snakePulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.35; transform: scale(0.85); }
+}
+
+.snake-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.snake-btn-icon {
+    background: #141414;
+    border: 1px solid #222222;
+    color: #ffffff;
+    width: 28px;
+    height: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.snake-btn-icon:hover {
+    background: #ff4500;
+    color: #000000;
+    border-color: #ff4500;
+}
+
+/* Telemetry & Scores */
+.snake-hud {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    background: #090909;
+    border-bottom: 1px solid #161616;
+}
+
+.snake-score-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.snake-hud-label {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: #666666;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.snake-hud-val {
+    font-family: 'Syne', monospace, sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.1;
+}
+
+.snake-hud-val.accent {
+    color: #ff4500;
+}
+
+.snake-hud-meta {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.snake-best-val {
+    font-family: 'Syne', monospace, sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #888888;
+}
+
+/* Playfield Area */
+.snake-playfield-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: #060606;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+#snakeCanvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    image-rendering: pixelated;
+}
+
+/* Game Overlay (Start / Paused / Game Over) */
+.snake-overlay-card {
+    position: absolute;
+    inset: 0;
+    background: rgba(6, 6, 6, 0.88);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    text-align: center;
+    z-index: 20;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.25s ease;
+}
+
+.snake-overlay-card.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.snake-state-tag {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #ff4500;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.snake-state-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(22px, 5vw, 28px);
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+}
+
+.snake-state-desc {
+    font-size: 13px;
+    color: #888888;
+    max-width: 260px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.snake-start-btn {
+    background: #ff4500;
+    color: #050505;
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 12px 28px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 20px rgba(255, 69, 0, 0.35);
+}
+
+.snake-start-btn:hover {
+    background: #ffffff;
+    color: #050505;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(255, 255, 255, 0.3);
+}
+
+/* Bottom Controls / Hints */
+.snake-footer {
+    padding: 14px 18px;
+    background: #090909;
+    border-top: 1px solid #161616;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.snake-keys-hint {
+    font-size: 11px;
+    color: #555555;
+    text-align: center;
+    letter-spacing: 0.04em;
+}
+
+.snake-keys-hint kbd {
+    background: #141414;
+    border: 1px solid #262626;
+    color: #aaaaaa;
+    padding: 2px 6px;
+    border-radius: 2px;
+    font-family: monospace;
+    font-size: 10px;
+}
+
+/* Touch Directional Controls for Mobile */
+.snake-touch-pad {
+    display: none;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 44px);
+    gap: 6px;
+    max-width: 220px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+@media (pointer: coarse), (max-width: 768px) {
+    .snake-touch-pad {
+        display: grid;
+    }
+}
+
+.snake-touch-btn {
+    background: #121212;
+    border: 1px solid #242424;
+    color: #ffffff;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    transition: background 0.1s, transform 0.1s;
+}
+
+.snake-touch-btn:active {
+    background: #ff4500;
+    color: #050505;
+    transform: scale(0.95);
+}
+
+.btn-up { grid-column: 2; grid-row: 1; }
+.btn-left { grid-column: 1; grid-row: 2; }
+.btn-down { grid-column: 2; grid-row: 2; }
+.btn-right { grid-column: 3; grid-row: 2; }
+
+/* Toast Notification */
+.snake-unlock-toast {
+    position: fixed;
+    bottom: max(28px, env(safe-area-inset-bottom));
+    left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: #0d0d0d;
+    border: 1px solid #ff4500;
+    color: #ffffff;
+    padding: 10px 20px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 69, 0, 0.25);
+    z-index: 100000;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.snake-unlock-toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
